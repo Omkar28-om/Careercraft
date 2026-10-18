@@ -1,0 +1,14 @@
+{
+  "packName": "Free Course Starter Pack (supplied with the CareerCraft project)",
+  "version": "1.0.0",
+  "courseCount": 12,
+  "domainCount": 6,
+  "lessonCount": 72,
+  "questionCount": 60,
+  "contentType": "Original starter content",
+  "format": [
+    "Markdown",
+    "JSON",
+    "CSV"
+  ]
+}

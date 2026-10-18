@@ -1,0 +1,842 @@
+[
+  {
+    "id": "web-development-foundations-q1",
+    "courseId": "web-development-foundations",
+    "domain": "IT & Software",
+    "question": "Which language primarily describes the structure and meaning of a web page?",
+    "options": [
+      "CSS",
+      "HTML",
+      "SQL",
+      "Bash"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "HTML provides the structure and semantic meaning of page content."
+  },
+  {
+    "id": "web-development-foundations-q2",
+    "courseId": "web-development-foundations",
+    "domain": "IT & Software",
+    "question": "In the CSS box model, which area is immediately outside the content?",
+    "options": [
+      "Margin",
+      "Border",
+      "Padding",
+      "Viewport"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "Padding sits between content and border."
+  },
+  {
+    "id": "web-development-foundations-q3",
+    "courseId": "web-development-foundations",
+    "domain": "IT & Software",
+    "question": "Which JavaScript keyword declares a block-scoped variable that can be reassigned?",
+    "options": [
+      "const",
+      "let",
+      "static",
+      "define"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "let declares a block-scoped binding that may be reassigned."
+  },
+  {
+    "id": "web-development-foundations-q4",
+    "courseId": "web-development-foundations",
+    "domain": "IT & Software",
+    "question": "What does DNS help a browser do?",
+    "options": [
+      "Style a page",
+      "Resolve a domain name to an IP address",
+      "Compile CSS",
+      "Store passwords"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "DNS resolves domain names to network addresses."
+  },
+  {
+    "id": "web-development-foundations-q5",
+    "courseId": "web-development-foundations",
+    "domain": "IT & Software",
+    "question": "Which CSS layout tool is especially useful for one-dimensional row or column layouts?",
+    "options": [
+      "Flexbox",
+      "SQL",
+      "JSON",
+      "DNS"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Flexbox is designed for layout along a row or column."
+  },
+  {
+    "id": "python-programming-basics-q1",
+    "courseId": "python-programming-basics",
+    "domain": "IT & Software",
+    "question": "Which Python type represents True or False?",
+    "options": [
+      "str",
+      "bool",
+      "list",
+      "dict"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "bool represents Boolean truth values."
+  },
+  {
+    "id": "python-programming-basics-q2",
+    "courseId": "python-programming-basics",
+    "domain": "IT & Software",
+    "question": "Which keyword defines a function?",
+    "options": [
+      "func",
+      "function",
+      "def",
+      "lambda:"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "A standard named function is defined with def."
+  },
+  {
+    "id": "python-programming-basics-q3",
+    "courseId": "python-programming-basics",
+    "domain": "IT & Software",
+    "question": "What does a dictionary store?",
+    "options": [
+      "Only ordered numbers",
+      "Key-value mappings",
+      "Only characters",
+      "Compiled machine code"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Dictionaries associate keys with values."
+  },
+  {
+    "id": "python-programming-basics-q4",
+    "courseId": "python-programming-basics",
+    "domain": "IT & Software",
+    "question": "What is the result of len([3, 8, 9])?",
+    "options": [
+      "2",
+      "3",
+      "8",
+      "20"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "The list contains three elements."
+  },
+  {
+    "id": "python-programming-basics-q5",
+    "courseId": "python-programming-basics",
+    "domain": "IT & Software",
+    "question": "Which loop is commonly used to iterate over each item in a list?",
+    "options": [
+      "for",
+      "switch",
+      "repeat-until",
+      "case"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A for loop iterates over the list's items."
+  },
+  {
+    "id": "data-analytics-foundations-q1",
+    "courseId": "data-analytics-foundations",
+    "domain": "Data & Analytics",
+    "question": "What should generally happen before analysing a dataset?",
+    "options": [
+      "Publish the conclusion",
+      "Check data quality",
+      "Delete all outliers automatically",
+      "Choose a chart at random"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Validation helps prevent misleading analysis."
+  },
+  {
+    "id": "data-analytics-foundations-q2",
+    "courseId": "data-analytics-foundations",
+    "domain": "Data & Analytics",
+    "question": "Which SQL clause filters rows based on a condition?",
+    "options": [
+      "ORDER BY",
+      "WHERE",
+      "GROUP BY",
+      "SELECT DISTINCT only"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "WHERE applies row-level conditions."
+  },
+  {
+    "id": "data-analytics-foundations-q3",
+    "courseId": "data-analytics-foundations",
+    "domain": "Data & Analytics",
+    "question": "Which chart is usually suitable for comparing sales across product categories?",
+    "options": [
+      "Bar chart",
+      "Map only",
+      "Line chart with no time axis",
+      "Network diagram"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Bar charts are effective for category comparisons."
+  },
+  {
+    "id": "data-analytics-foundations-q4",
+    "courseId": "data-analytics-foundations",
+    "domain": "Data & Analytics",
+    "question": "A primary key should generally be what?",
+    "options": [
+      "Repeated for every row",
+      "Unique for each row",
+      "Always a sentence",
+      "Always null"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "A primary key uniquely identifies each record."
+  },
+  {
+    "id": "data-analytics-foundations-q5",
+    "courseId": "data-analytics-foundations",
+    "domain": "Data & Analytics",
+    "question": "If two variables move together, what can you conclude from correlation alone?",
+    "options": [
+      "One definitely causes the other",
+      "They are associated in the observed data",
+      "The data has no errors",
+      "The relationship is permanent"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Correlation indicates association, not necessarily causation."
+  },
+  {
+    "id": "machine-learning-introduction-q1",
+    "courseId": "machine-learning-introduction",
+    "domain": "Data & Analytics",
+    "question": "Which learning type uses labelled examples?",
+    "options": [
+      "Supervised learning",
+      "Unsupervised learning only",
+      "Manual sorting",
+      "Compression only"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Supervised learning trains from examples with target labels."
+  },
+  {
+    "id": "machine-learning-introduction-q2",
+    "courseId": "machine-learning-introduction",
+    "domain": "Data & Analytics",
+    "question": "What is overfitting?",
+    "options": [
+      "A model performs well on training data but poorly on new data",
+      "A model has no parameters",
+      "A dataset has no rows",
+      "A chart has too many labels"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Overfitting limits generalisation to unseen data."
+  },
+  {
+    "id": "machine-learning-introduction-q3",
+    "courseId": "machine-learning-introduction",
+    "domain": "Data & Analytics",
+    "question": "Recall is calculated using which quantities?",
+    "options": [
+      "TP / (TP + FN)",
+      "TN / (TN + FP)",
+      "TP / (TP + FP)",
+      "FP / (TP + TN)"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Recall measures the proportion of actual positives identified."
+  },
+  {
+    "id": "machine-learning-introduction-q4",
+    "courseId": "machine-learning-introduction",
+    "domain": "Data & Analytics",
+    "question": "Why keep a test set separate until final evaluation?",
+    "options": [
+      "To improve font size",
+      "To estimate performance on unseen data",
+      "To guarantee perfect accuracy",
+      "To avoid cleaning data"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "A held-out test set offers a less biased final estimate."
+  },
+  {
+    "id": "machine-learning-introduction-q5",
+    "courseId": "machine-learning-introduction",
+    "domain": "Data & Analytics",
+    "question": "What is data leakage?",
+    "options": [
+      "A file being too large",
+      "Using information during training that would not legitimately be available at prediction time",
+      "A missing chart title",
+      "A slow keyboard"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Leakage can make evaluation scores unrealistically optimistic."
+  },
+  {
+    "id": "cloud-computing-fundamentals-q1",
+    "courseId": "cloud-computing-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "Which service model typically provides a complete application to the end user?",
+    "options": [
+      "IaaS",
+      "PaaS",
+      "SaaS",
+      "Bare metal only"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "SaaS delivers a finished software application."
+  },
+  {
+    "id": "cloud-computing-fundamentals-q2",
+    "courseId": "cloud-computing-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "What does least privilege mean?",
+    "options": [
+      "Give everyone administrator access",
+      "Give only the permissions needed for a task",
+      "Never use passwords",
+      "Disable all logging"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Least privilege limits unnecessary access."
+  },
+  {
+    "id": "cloud-computing-fundamentals-q3",
+    "courseId": "cloud-computing-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "Why should backups be restore-tested?",
+    "options": [
+      "To change the logo",
+      "To verify that recovery works",
+      "To increase file size",
+      "To remove monitoring"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "A backup is not dependable until restoration has been tested."
+  },
+  {
+    "id": "cloud-computing-fundamentals-q4",
+    "courseId": "cloud-computing-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "Who is responsible for every security control in every cloud service?",
+    "options": [
+      "Only the customer",
+      "Only the provider",
+      "Responsibility is shared and varies by service",
+      "No one"
+    ],
+    "correctOptionIndex": 2,
+    "explanation": "The division of responsibility depends on the service and configuration."
+  },
+  {
+    "id": "cloud-computing-fundamentals-q5",
+    "courseId": "cloud-computing-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "Which action helps control cloud costs?",
+    "options": [
+      "Leave all test servers running forever",
+      "Tag resources and review usage",
+      "Disable budgets",
+      "Create duplicate storage without a reason"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Resource tracking and usage reviews help identify waste."
+  },
+  {
+    "id": "cybersecurity-fundamentals-q1",
+    "courseId": "cybersecurity-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "What does the confidentiality principle protect?",
+    "options": [
+      "Preventing unauthorised disclosure",
+      "Guaranteeing every system is fast",
+      "Making all data public",
+      "Removing all backups"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Confidentiality limits access to authorised parties."
+  },
+  {
+    "id": "cybersecurity-fundamentals-q2",
+    "courseId": "cybersecurity-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "What is a strong response to an unexpected request for a one-time code?",
+    "options": [
+      "Send it immediately",
+      "Verify the request through a trusted separate channel",
+      "Post it publicly",
+      "Reuse it as a password"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "One-time codes should not be shared; verify suspicious requests independently."
+  },
+  {
+    "id": "cybersecurity-fundamentals-q3",
+    "courseId": "cybersecurity-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "What is multifactor authentication?",
+    "options": [
+      "Using two or more distinct authentication factors",
+      "Using the same password twice",
+      "Logging in without verification",
+      "Encrypting a file name"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "MFA combines different factor types to strengthen account security."
+  },
+  {
+    "id": "cybersecurity-fundamentals-q4",
+    "courseId": "cybersecurity-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "What should you do after noticing a likely security incident at work?",
+    "options": [
+      "Hide it",
+      "Follow the reporting and incident-response process",
+      "Delete all logs",
+      "Share evidence publicly"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Prompt reporting helps the response team contain and investigate the incident."
+  },
+  {
+    "id": "cybersecurity-fundamentals-q5",
+    "courseId": "cybersecurity-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "question": "Which statement about risk is most accurate?",
+    "options": [
+      "Risk is always zero after installing antivirus",
+      "Risk involves likelihood and impact",
+      "Every threat is a vulnerability",
+      "Backups prevent every attack"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Risk assessment considers both probability and potential consequence."
+  },
+  {
+    "id": "digital-marketing-foundations-q1",
+    "courseId": "digital-marketing-foundations",
+    "domain": "Marketing & Content",
+    "question": "What should guide channel selection?",
+    "options": [
+      "Audience behaviour and campaign objective",
+      "The newest logo colour only",
+      "Random choice",
+      "The number of letters in the brand name"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Channels should fit the audience and the intended outcome."
+  },
+  {
+    "id": "digital-marketing-foundations-q2",
+    "courseId": "digital-marketing-foundations",
+    "domain": "Marketing & Content",
+    "question": "Which practice is generally good for SEO?",
+    "options": [
+      "Keyword stuffing",
+      "Helpful content with descriptive headings",
+      "Hidden text intended to manipulate rankings",
+      "Copying competitors' pages"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Useful, well-structured content supports both users and search engines."
+  },
+  {
+    "id": "digital-marketing-foundations-q3",
+    "courseId": "digital-marketing-foundations",
+    "domain": "Marketing & Content",
+    "question": "What is a conversion?",
+    "options": [
+      "A desired action such as a signup or purchase",
+      "Any page colour",
+      "A server restart",
+      "A follower count only"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A conversion is an action aligned with a defined objective."
+  },
+  {
+    "id": "digital-marketing-foundations-q4",
+    "courseId": "digital-marketing-foundations",
+    "domain": "Marketing & Content",
+    "question": "Why define a baseline before an experiment?",
+    "options": [
+      "To compare results against a reference",
+      "To guarantee success",
+      "To avoid measuring anything",
+      "To hide negative outcomes"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A baseline gives context for interpreting a change."
+  },
+  {
+    "id": "digital-marketing-foundations-q5",
+    "courseId": "digital-marketing-foundations",
+    "domain": "Marketing & Content",
+    "question": "Which metric is closest to a campaign's business outcome?",
+    "options": [
+      "Qualified leads or purchases, depending on the goal",
+      "Emoji count alone",
+      "Number of internal drafts",
+      "Screen brightness"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Choose metrics tied to the campaign's objective."
+  },
+  {
+    "id": "content-creation-and-seo-q1",
+    "courseId": "content-creation-and-seo",
+    "domain": "Marketing & Content",
+    "question": "What is the purpose of a content brief?",
+    "options": [
+      "Align the content with audience, message, format, and goal",
+      "Replace all research",
+      "Guarantee search ranking",
+      "Avoid fact-checking"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A brief helps writers create content for a clear audience and purpose."
+  },
+  {
+    "id": "content-creation-and-seo-q2",
+    "courseId": "content-creation-and-seo",
+    "domain": "Marketing & Content",
+    "question": "What does alt text help provide?",
+    "options": [
+      "A text alternative for meaningful images",
+      "A guaranteed ranking boost",
+      "A new domain name",
+      "A password reset"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Alt text communicates image information to people who cannot see it."
+  },
+  {
+    "id": "content-creation-and-seo-q3",
+    "courseId": "content-creation-and-seo",
+    "domain": "Marketing & Content",
+    "question": "A search for 'how to write a resume' is most likely which intent?",
+    "options": [
+      "Informational",
+      "Navigational only",
+      "Transactional only",
+      "Unknown by definition"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The wording suggests the user wants instructions."
+  },
+  {
+    "id": "content-creation-and-seo-q4",
+    "courseId": "content-creation-and-seo",
+    "domain": "Marketing & Content",
+    "question": "What does click-through rate compare?",
+    "options": [
+      "Clicks relative to impressions",
+      "Revenue relative to staff count",
+      "Words relative to images",
+      "Downloads relative to passwords"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "CTR is commonly calculated as clicks divided by impressions."
+  },
+  {
+    "id": "content-creation-and-seo-q5",
+    "courseId": "content-creation-and-seo",
+    "domain": "Marketing & Content",
+    "question": "Why refresh an older article?",
+    "options": [
+      "To correct outdated information and improve usefulness",
+      "To add random keywords",
+      "To hide the publication date in all cases",
+      "To remove all citations"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Maintenance keeps content accurate and useful."
+  },
+  {
+    "id": "business-and-project-management-q1",
+    "courseId": "business-and-project-management",
+    "domain": "Business & Management",
+    "question": "What does project scope define?",
+    "options": [
+      "Project boundaries and deliverables",
+      "Only the team logo",
+      "Every employee's private life",
+      "The weather"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Scope clarifies what the project will and will not deliver."
+  },
+  {
+    "id": "business-and-project-management-q2",
+    "courseId": "business-and-project-management",
+    "domain": "Business & Management",
+    "question": "What should a risk register include?",
+    "options": [
+      "Risk, likelihood/impact, owner, and response",
+      "Only a project title",
+      "Passwords of all stakeholders",
+      "Unverified rumours"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A risk register supports ownership and mitigation."
+  },
+  {
+    "id": "business-and-project-management-q3",
+    "courseId": "business-and-project-management",
+    "domain": "Business & Management",
+    "question": "Why identify dependencies?",
+    "options": [
+      "Some tasks cannot start or finish until other tasks progress",
+      "To remove milestones",
+      "To guarantee there are no delays",
+      "To avoid communicating"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Dependencies affect sequencing and scheduling."
+  },
+  {
+    "id": "business-and-project-management-q4",
+    "courseId": "business-and-project-management",
+    "domain": "Business & Management",
+    "question": "What is a useful status update?",
+    "options": [
+      "Progress, blockers, next steps, and decisions needed",
+      "Only 'everything is fine'",
+      "An unrelated personal story",
+      "A list of passwords"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Concise status reporting makes action and escalation clear."
+  },
+  {
+    "id": "business-and-project-management-q5",
+    "courseId": "business-and-project-management",
+    "domain": "Business & Management",
+    "question": "What makes a retrospective action more likely to happen?",
+    "options": [
+      "An owner and due date",
+      "No record of it",
+      "A vague wish",
+      "No follow-up"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Ownership and deadlines make improvement actions actionable."
+  },
+  {
+    "id": "finance-and-budgeting-basics-q1",
+    "courseId": "finance-and-budgeting-basics",
+    "domain": "Business & Finance",
+    "question": "What is a budget primarily used for?",
+    "options": [
+      "Planning and tracking income and expenses",
+      "Guaranteeing investment profits",
+      "Avoiding all taxes",
+      "Predicting every emergency"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A budget helps organise money and make informed spending decisions."
+  },
+  {
+    "id": "finance-and-budgeting-basics-q2",
+    "courseId": "finance-and-budgeting-basics",
+    "domain": "Business & Finance",
+    "question": "What distinguishes compound interest?",
+    "options": [
+      "Interest can accrue on previously earned interest",
+      "It never changes",
+      "It applies only to cash",
+      "It guarantees profit"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Compounding includes previously accumulated interest in the base."
+  },
+  {
+    "id": "finance-and-budgeting-basics-q3",
+    "courseId": "finance-and-budgeting-basics",
+    "domain": "Business & Finance",
+    "question": "Which is a warning sign of a financial scam?",
+    "options": [
+      "Guaranteed unusually high returns with pressure to act quickly",
+      "Clear written terms",
+      "Independent verification",
+      "Transparent fees"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Unrealistic guarantees and urgency are common warning signs."
+  },
+  {
+    "id": "finance-and-budgeting-basics-q4",
+    "courseId": "finance-and-budgeting-basics",
+    "domain": "Business & Finance",
+    "question": "Does diversification eliminate all investment risk?",
+    "options": [
+      "Yes, always",
+      "No, it can reduce some risks but cannot remove all risk",
+      "Only for one stock",
+      "It guarantees returns"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Diversification is a risk-management method, not a guarantee."
+  },
+  {
+    "id": "finance-and-budgeting-basics-q5",
+    "courseId": "finance-and-budgeting-basics",
+    "domain": "Business & Finance",
+    "question": "Before taking a loan, what should be compared?",
+    "options": [
+      "Total repayment, interest, fees, tenure, and affordability",
+      "Only the advertisement",
+      "Only the lender's logo",
+      "Only the first monthly payment"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "The full cost and repayment obligations matter."
+  },
+  {
+    "id": "healthcare-and-biotechnology-introduction-q1",
+    "courseId": "healthcare-and-biotechnology-introduction",
+    "domain": "Healthcare & Life Sciences",
+    "question": "What molecule stores most hereditary information in humans?",
+    "options": [
+      "DNA",
+      "Table salt",
+      "Glucose only",
+      "Water"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "DNA carries genetic information in human cells."
+  },
+  {
+    "id": "healthcare-and-biotechnology-introduction-q2",
+    "courseId": "healthcare-and-biotechnology-introduction",
+    "domain": "Healthcare & Life Sciences",
+    "question": "Why is independent replication valuable in science?",
+    "options": [
+      "It helps assess whether findings are reproducible",
+      "It guarantees every claim is true",
+      "It replaces ethical review",
+      "It removes all uncertainty"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Replication helps test the reliability of findings."
+  },
+  {
+    "id": "healthcare-and-biotechnology-introduction-q3",
+    "courseId": "healthcare-and-biotechnology-introduction",
+    "domain": "Healthcare & Life Sciences",
+    "question": "What is a good principle for handling health data?",
+    "options": [
+      "Collect and expose everything",
+      "Limit collection and access to what is necessary",
+      "Share records publicly by default",
+      "Reuse passwords across systems"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Data minimisation and access controls reduce privacy risk."
+  },
+  {
+    "id": "healthcare-and-biotechnology-introduction-q4",
+    "courseId": "healthcare-and-biotechnology-introduction",
+    "domain": "Healthcare & Life Sciences",
+    "question": "What is biotechnology?",
+    "options": [
+      "Using biological systems to develop products or processes",
+      "Only repairing computers",
+      "Only building roads",
+      "A type of spreadsheet"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Biotechnology applies biological systems and processes."
+  },
+  {
+    "id": "healthcare-and-biotechnology-introduction-q5",
+    "courseId": "healthcare-and-biotechnology-introduction",
+    "domain": "Healthcare & Life Sciences",
+    "question": "Why maintain traceable records in a regulated workflow?",
+    "options": [
+      "To support consistency and investigation of errors",
+      "To hide mistakes",
+      "To remove accountability",
+      "To replace training"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Traceability supports review, accountability, and quality management."
+  },
+  {
+    "id": "healthcare-operations-and-analytics-q1",
+    "courseId": "healthcare-operations-and-analytics",
+    "domain": "Healthcare & Life Sciences",
+    "question": "What is throughput?",
+    "options": [
+      "Completed cases per unit of time",
+      "The colour of a waiting room",
+      "A patient's diagnosis",
+      "A database password"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Throughput measures completed work over a defined period."
+  },
+  {
+    "id": "healthcare-operations-and-analytics-q2",
+    "courseId": "healthcare-operations-and-analytics",
+    "domain": "Healthcare & Life Sciences",
+    "question": "Why use process mapping?",
+    "options": [
+      "To identify steps, handoffs, queues, and bottlenecks",
+      "To make every process longer",
+      "To replace patient safety",
+      "To expose all personal data"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "Process maps make workflow structure visible."
+  },
+  {
+    "id": "healthcare-operations-and-analytics-q3",
+    "courseId": "healthcare-operations-and-analytics",
+    "domain": "Healthcare & Life Sciences",
+    "question": "Why use balancing measures when reducing wait times?",
+    "options": [
+      "To check that speed improvements do not harm quality or safety",
+      "To avoid measuring outcomes",
+      "To guarantee no queues",
+      "To increase data collection without purpose"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A single metric can improve while other outcomes worsen."
+  },
+  {
+    "id": "healthcare-operations-and-analytics-q4",
+    "courseId": "healthcare-operations-and-analytics",
+    "domain": "Healthcare & Life Sciences",
+    "question": "What is a reasonable first step in process improvement?",
+    "options": [
+      "Define the problem and establish a baseline",
+      "Change every process at once",
+      "Skip measurement",
+      "Assume the cause"
+    ],
+    "correctOptionIndex": 0,
+    "explanation": "A baseline helps assess whether a change actually improved the process."
+  },
+  {
+    "id": "healthcare-operations-and-analytics-q5",
+    "courseId": "healthcare-operations-and-analytics",
+    "domain": "Healthcare & Life Sciences",
+    "question": "Should operational analytics replace clinical judgement?",
+    "options": [
+      "Yes, in every case",
+      "No, it should support decisions with appropriate human oversight",
+      "Only when data is incomplete",
+      "Always ignore analytics"
+    ],
+    "correctOptionIndex": 1,
+    "explanation": "Analytics can inform decisions but does not replace qualified clinical judgement."
+  }
+]

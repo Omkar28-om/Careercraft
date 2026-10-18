@@ -1,0 +1,758 @@
+[
+  {
+    "id": "web-development-foundations",
+    "domain": "IT & Software",
+    "title": "Web Development Foundations",
+    "level": "Beginner",
+    "description": "An original starter course introducing the core building blocks of websites.",
+    "modules": [
+      {
+        "id": "web-development-foundations-m1",
+        "title": "Module 1: How the Web Works",
+        "lessons": [
+          {
+            "id": "web-development-foundations-m1-l1",
+            "title": "Client, server, and HTTP",
+            "content": "A browser is a client that requests resources from a server. HTTP defines how requests and responses are exchanged. A URL identifies a resource, while DNS helps translate domain names into IP addresses.",
+            "format": "markdown"
+          },
+          {
+            "id": "web-development-foundations-m1-l2",
+            "title": "Web page structure",
+            "content": "HTML describes content and meaning. Semantic elements such as header, nav, main, article, and footer help browsers, assistive technologies, and search engines understand a page.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "web-development-foundations-m2",
+        "title": "Module 2: CSS and Responsive Layout",
+        "lessons": [
+          {
+            "id": "web-development-foundations-m2-l1",
+            "title": "CSS basics",
+            "content": "CSS rules select elements and apply declarations such as color, spacing, borders, and typography. The box model consists of content, padding, border, and margin.",
+            "format": "markdown"
+          },
+          {
+            "id": "web-development-foundations-m2-l2",
+            "title": "Responsive design",
+            "content": "Responsive layouts adapt to different screen sizes. Use flexible widths, CSS Grid or Flexbox, and media queries. Test keyboard navigation and readable text as well as visual layout.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "web-development-foundations-m3",
+        "title": "Module 3: JavaScript Fundamentals",
+        "lessons": [
+          {
+            "id": "web-development-foundations-m3-l1",
+            "title": "Variables and functions",
+            "content": "Use const for values that are not reassigned and let for values that are. Functions package reusable logic and can accept parameters and return results.",
+            "format": "markdown"
+          },
+          {
+            "id": "web-development-foundations-m3-l2",
+            "title": "DOM and events",
+            "content": "The Document Object Model represents a page as objects. JavaScript can select elements, update text, and respond to events such as clicks or form submissions.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "python-programming-basics",
+    "domain": "IT & Software",
+    "title": "Python Programming Basics",
+    "level": "Beginner",
+    "description": "An original introduction to Python syntax, control flow, collections, and functions.",
+    "modules": [
+      {
+        "id": "python-programming-basics-m1",
+        "title": "Module 1: Getting Started",
+        "lessons": [
+          {
+            "id": "python-programming-basics-m1-l1",
+            "title": "Values and variables",
+            "content": "Python variables refer to objects. Common built-in types include int, float, str, and bool. Use meaningful names and keep indentation consistent.",
+            "format": "markdown"
+          },
+          {
+            "id": "python-programming-basics-m1-l2",
+            "title": "Input and output",
+            "content": "print() displays output and input() reads text from the user. Convert input explicitly with int() or float() when numeric calculations are required.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "python-programming-basics-m2",
+        "title": "Module 2: Logic and Collections",
+        "lessons": [
+          {
+            "id": "python-programming-basics-m2-l1",
+            "title": "Conditions and loops",
+            "content": "if/elif/else chooses a path. for loops iterate over items, while loops repeat while a condition is true, and break exits a loop.",
+            "format": "markdown"
+          },
+          {
+            "id": "python-programming-basics-m2-l2",
+            "title": "Lists and dictionaries",
+            "content": "Lists preserve order and allow indexed access. Dictionaries map unique keys to values and are useful for structured lookups.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "python-programming-basics-m3",
+        "title": "Module 3: Functions and Debugging",
+        "lessons": [
+          {
+            "id": "python-programming-basics-m3-l1",
+            "title": "Functions",
+            "content": "Define reusable behaviour with def. Parameters receive inputs, return sends a result to the caller, and docstrings explain purpose and usage.",
+            "format": "markdown"
+          },
+          {
+            "id": "python-programming-basics-m3-l2",
+            "title": "Errors and testing",
+            "content": "Read tracebacks from the bottom upward to find the immediate error. Test normal cases, boundary cases, and invalid inputs.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "data-analytics-foundations",
+    "domain": "Data & Analytics",
+    "title": "Data Analytics Foundations",
+    "level": "Beginner",
+    "description": "Learn a simple workflow for turning raw data into useful decisions.",
+    "modules": [
+      {
+        "id": "data-analytics-foundations-m1",
+        "title": "Module 1: Asking Good Questions",
+        "lessons": [
+          {
+            "id": "data-analytics-foundations-m1-l1",
+            "title": "Analytics workflow",
+            "content": "Start with a decision or question, define metrics, collect relevant data, validate quality, analyse patterns, and communicate findings with limitations.",
+            "format": "markdown"
+          },
+          {
+            "id": "data-analytics-foundations-m1-l2",
+            "title": "Data quality",
+            "content": "Check missing values, duplicates, inconsistent units, invalid ranges, and outdated records before drawing conclusions.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "data-analytics-foundations-m2",
+        "title": "Module 2: Tables and SQL Concepts",
+        "lessons": [
+          {
+            "id": "data-analytics-foundations-m2-l1",
+            "title": "Rows, columns, and keys",
+            "content": "A table stores records in rows and attributes in columns. A primary key uniquely identifies a row; a foreign key links related tables.",
+            "format": "markdown"
+          },
+          {
+            "id": "data-analytics-foundations-m2-l2",
+            "title": "Filtering and aggregation",
+            "content": "SQL SELECT retrieves columns, WHERE filters rows, GROUP BY aggregates categories, and ORDER BY sorts the output.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "data-analytics-foundations-m3",
+        "title": "Module 3: Communicating Insights",
+        "lessons": [
+          {
+            "id": "data-analytics-foundations-m3-l1",
+            "title": "Choosing charts",
+            "content": "Use bar charts for category comparisons, line charts for trends over time, and scatter plots for relationships between numeric variables.",
+            "format": "markdown"
+          },
+          {
+            "id": "data-analytics-foundations-m3-l2",
+            "title": "Responsible interpretation",
+            "content": "Correlation alone does not establish causation. Explain the population, time period, assumptions, and uncertainty behind a result.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "machine-learning-introduction",
+    "domain": "Data & Analytics",
+    "title": "Introduction to Machine Learning",
+    "level": "Beginner",
+    "description": "An original overview of supervised learning, evaluation, and responsible model use.",
+    "modules": [
+      {
+        "id": "machine-learning-introduction-m1",
+        "title": "Module 1: Core Ideas",
+        "lessons": [
+          {
+            "id": "machine-learning-introduction-m1-l1",
+            "title": "What is machine learning?",
+            "content": "Machine learning uses data to fit a model that makes predictions or identifies patterns. It is useful when rules are difficult to specify manually.",
+            "format": "markdown"
+          },
+          {
+            "id": "machine-learning-introduction-m1-l2",
+            "title": "Supervised and unsupervised learning",
+            "content": "Supervised learning uses labelled examples. Unsupervised learning explores structure in data without a target label, such as grouping similar records.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "machine-learning-introduction-m2",
+        "title": "Module 2: Training and Evaluation",
+        "lessons": [
+          {
+            "id": "machine-learning-introduction-m2-l1",
+            "title": "Train, validation, and test sets",
+            "content": "Training data fits model parameters. Validation data helps select settings. A held-out test set estimates performance on unseen examples.",
+            "format": "markdown"
+          },
+          {
+            "id": "machine-learning-introduction-m2-l2",
+            "title": "Classification metrics",
+            "content": "Accuracy is the fraction of correct predictions. Precision measures how many predicted positives are true positives; recall measures how many actual positives were found.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "machine-learning-introduction-m3",
+        "title": "Module 3: Risks and Deployment",
+        "lessons": [
+          {
+            "id": "machine-learning-introduction-m3-l1",
+            "title": "Overfitting and leakage",
+            "content": "Overfitting occurs when a model learns training-specific noise. Data leakage occurs when training uses information unavailable at prediction time.",
+            "format": "markdown"
+          },
+          {
+            "id": "machine-learning-introduction-m3-l2",
+            "title": "Responsible AI",
+            "content": "Assess data representativeness, privacy, fairness, explainability, and the consequences of mistakes. Monitor models after deployment because data can change.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cloud-computing-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "title": "Cloud Computing Fundamentals",
+    "level": "Beginner",
+    "description": "Understand cloud service models, deployment, access control, and cost awareness.",
+    "modules": [
+      {
+        "id": "cloud-computing-fundamentals-m1",
+        "title": "Module 1: Cloud Concepts",
+        "lessons": [
+          {
+            "id": "cloud-computing-fundamentals-m1-l1",
+            "title": "What is cloud computing?",
+            "content": "Cloud computing provides on-demand access to computing resources over a network. Capacity can often be provisioned and released without buying physical servers.",
+            "format": "markdown"
+          },
+          {
+            "id": "cloud-computing-fundamentals-m1-l2",
+            "title": "Service models",
+            "content": "IaaS provides configurable infrastructure, PaaS provides a managed application platform, and SaaS provides a finished application to end users.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "cloud-computing-fundamentals-m2",
+        "title": "Module 2: Security Basics",
+        "lessons": [
+          {
+            "id": "cloud-computing-fundamentals-m2-l1",
+            "title": "Identity and access management",
+            "content": "Grant each identity only the permissions required for its task. Use multifactor authentication where available and remove access when it is no longer needed.",
+            "format": "markdown"
+          },
+          {
+            "id": "cloud-computing-fundamentals-m2-l2",
+            "title": "Shared responsibility",
+            "content": "Cloud providers secure parts of the underlying service, while customers remain responsible for configured identities, data, applications, and other controls according to the service model.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "cloud-computing-fundamentals-m3",
+        "title": "Module 3: Reliability and Cost",
+        "lessons": [
+          {
+            "id": "cloud-computing-fundamentals-m3-l1",
+            "title": "Availability and backups",
+            "content": "Use backups, recovery tests, monitoring, and suitable redundancy to reduce the impact of failures. A backup is useful only if restoration works.",
+            "format": "markdown"
+          },
+          {
+            "id": "cloud-computing-fundamentals-m3-l2",
+            "title": "Cost management",
+            "content": "Tag resources, set budgets and alerts, right-size instances, and shut down unused development resources. Understand data transfer and storage costs.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cybersecurity-fundamentals",
+    "domain": "Cloud & Cybersecurity",
+    "title": "Cybersecurity Fundamentals",
+    "level": "Beginner",
+    "description": "Learn defensive security principles, phishing awareness, authentication, and incident response.",
+    "modules": [
+      {
+        "id": "cybersecurity-fundamentals-m1",
+        "title": "Module 1: Security Principles",
+        "lessons": [
+          {
+            "id": "cybersecurity-fundamentals-m1-l1",
+            "title": "Confidentiality, integrity, availability",
+            "content": "Confidentiality limits unauthorised disclosure, integrity protects correctness, and availability ensures authorised users can access systems when needed.",
+            "format": "markdown"
+          },
+          {
+            "id": "cybersecurity-fundamentals-m1-l2",
+            "title": "Threats and vulnerabilities",
+            "content": "A threat may exploit a vulnerability to cause harm. Risk depends on likelihood and impact, and controls can reduce but rarely eliminate risk.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "cybersecurity-fundamentals-m2",
+        "title": "Module 2: Safer Accounts and Devices",
+        "lessons": [
+          {
+            "id": "cybersecurity-fundamentals-m2-l1",
+            "title": "Authentication",
+            "content": "Use unique passwords stored in a reputable password manager and enable multifactor authentication. Never share one-time codes or recovery codes.",
+            "format": "markdown"
+          },
+          {
+            "id": "cybersecurity-fundamentals-m2-l2",
+            "title": "Phishing awareness",
+            "content": "Check the sender, domain, urgency, unexpected attachments, and requests for credentials or payments. Verify sensitive requests using a separate trusted channel.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "cybersecurity-fundamentals-m3",
+        "title": "Module 3: Defensive Response",
+        "lessons": [
+          {
+            "id": "cybersecurity-fundamentals-m3-l1",
+            "title": "Updates and backups",
+            "content": "Apply security updates promptly, use supported software, restrict permissions, and maintain protected backups.",
+            "format": "markdown"
+          },
+          {
+            "id": "cybersecurity-fundamentals-m3-l2",
+            "title": "Incident response",
+            "content": "Report suspected incidents quickly, preserve relevant evidence, follow the organisation's response plan, and avoid making changes that destroy useful evidence.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "digital-marketing-foundations",
+    "domain": "Marketing & Content",
+    "title": "Digital Marketing Foundations",
+    "level": "Beginner",
+    "description": "An original introduction to audience research, SEO, social media, and campaign measurement.",
+    "modules": [
+      {
+        "id": "digital-marketing-foundations-m1",
+        "title": "Module 1: Audience and Strategy",
+        "lessons": [
+          {
+            "id": "digital-marketing-foundations-m1-l1",
+            "title": "Define the audience",
+            "content": "Describe the audience's needs, context, problems, and preferred channels. Build a clear value proposition instead of trying to appeal to everyone.",
+            "format": "markdown"
+          },
+          {
+            "id": "digital-marketing-foundations-m1-l2",
+            "title": "Set measurable objectives",
+            "content": "Use specific goals and a time period. Choose metrics that connect to outcomes, such as qualified leads, conversions, retention, or revenue.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "digital-marketing-foundations-m2",
+        "title": "Module 2: Content and Search",
+        "lessons": [
+          {
+            "id": "digital-marketing-foundations-m2-l1",
+            "title": "Content planning",
+            "content": "Create useful content for a defined audience. Match format and detail to the audience's intent and maintain a consistent publishing workflow.",
+            "format": "markdown"
+          },
+          {
+            "id": "digital-marketing-foundations-m2-l2",
+            "title": "SEO basics",
+            "content": "Use descriptive page titles, helpful headings, accessible content, descriptive links, and fast mobile-friendly pages. Avoid keyword stuffing and misleading claims.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "digital-marketing-foundations-m3",
+        "title": "Module 3: Campaign Measurement",
+        "lessons": [
+          {
+            "id": "digital-marketing-foundations-m3-l1",
+            "title": "Social media planning",
+            "content": "Select channels based on audience behaviour and the content format. Use a calendar, clear calls to action, and a consistent brand voice.",
+            "format": "markdown"
+          },
+          {
+            "id": "digital-marketing-foundations-m3-l2",
+            "title": "Analytics and experiments",
+            "content": "Track relevant metrics, define a baseline, and test one meaningful change at a time when practical. Do not interpret likes alone as business success.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "content-creation-and-seo",
+    "domain": "Marketing & Content",
+    "title": "Content Creation and SEO",
+    "level": "Beginner",
+    "description": "Plan accessible content, structure pages, research search intent, and measure performance.",
+    "modules": [
+      {
+        "id": "content-creation-and-seo-m1",
+        "title": "Module 1: Content Briefs",
+        "lessons": [
+          {
+            "id": "content-creation-and-seo-m1-l1",
+            "title": "Write a useful brief",
+            "content": "A brief states the audience, problem, goal, key message, format, evidence required, call to action, and success metric.",
+            "format": "markdown"
+          },
+          {
+            "id": "content-creation-and-seo-m1-l2",
+            "title": "Editorial workflow",
+            "content": "Plan research, drafting, fact-checking, accessibility review, approval, publishing, and later updates.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "content-creation-and-seo-m2",
+        "title": "Module 2: On-page SEO",
+        "lessons": [
+          {
+            "id": "content-creation-and-seo-m2-l1",
+            "title": "Search intent",
+            "content": "Search intent may be informational, navigational, commercial, or transactional. Create a page that genuinely satisfies the likely need.",
+            "format": "markdown"
+          },
+          {
+            "id": "content-creation-and-seo-m2-l2",
+            "title": "Page structure",
+            "content": "Use a clear title, descriptive headings, meaningful link text, alt text for informative images, and concise metadata. Avoid promising results the page cannot deliver.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "content-creation-and-seo-m3",
+        "title": "Module 3: Improve and Refresh",
+        "lessons": [
+          {
+            "id": "content-creation-and-seo-m3-l1",
+            "title": "Performance measures",
+            "content": "Impressions, clicks, click-through rate, conversions, and engagement answer different questions. Interpret them together with the page's purpose.",
+            "format": "markdown"
+          },
+          {
+            "id": "content-creation-and-seo-m3-l2",
+            "title": "Content maintenance",
+            "content": "Update outdated facts, broken links, examples, and screenshots. Remove or consolidate pages that are duplicative or no longer useful.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "business-and-project-management",
+    "domain": "Business & Management",
+    "title": "Business and Project Management Basics",
+    "level": "Beginner",
+    "description": "Learn objectives, scope, stakeholders, risks, milestones, and team communication.",
+    "modules": [
+      {
+        "id": "business-and-project-management-m1",
+        "title": "Module 1: Project Foundations",
+        "lessons": [
+          {
+            "id": "business-and-project-management-m1-l1",
+            "title": "Project goals and scope",
+            "content": "A project has a defined objective, boundaries, deliverables, and constraints. Clear scope reduces confusion about what is included and excluded.",
+            "format": "markdown"
+          },
+          {
+            "id": "business-and-project-management-m1-l2",
+            "title": "Stakeholders",
+            "content": "Identify people affected by or able to influence the project. Clarify their needs, decision rights, communication preferences, and approval responsibilities.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "business-and-project-management-m2",
+        "title": "Module 2: Planning and Delivery",
+        "lessons": [
+          {
+            "id": "business-and-project-management-m2-l1",
+            "title": "Milestones and dependencies",
+            "content": "Break work into manageable tasks, estimate effort, identify dependencies, and set milestones. Revisit estimates when evidence changes.",
+            "format": "markdown"
+          },
+          {
+            "id": "business-and-project-management-m2-l2",
+            "title": "Risk management",
+            "content": "Record each meaningful risk, its likelihood and impact, an owner, a mitigation plan, and a trigger for escalation.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "business-and-project-management-m3",
+        "title": "Module 3: Review and Improvement",
+        "lessons": [
+          {
+            "id": "business-and-project-management-m3-l1",
+            "title": "Status reporting",
+            "content": "A useful status report covers progress, next steps, blockers, decisions needed, and changes to timeline or scope.",
+            "format": "markdown"
+          },
+          {
+            "id": "business-and-project-management-m3-l2",
+            "title": "Retrospectives",
+            "content": "Review what worked, what did not, and what to change. Assign an owner and due date to each improvement action.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "finance-and-budgeting-basics",
+    "domain": "Business & Finance",
+    "title": "Personal Finance and Budgeting Basics",
+    "level": "Beginner",
+    "description": "An educational introduction to budgeting, saving, interest, risk, and financial decision-making.",
+    "modules": [
+      {
+        "id": "finance-and-budgeting-basics-m1",
+        "title": "Module 1: Budgeting",
+        "lessons": [
+          {
+            "id": "finance-and-budgeting-basics-m1-l1",
+            "title": "Income and expenses",
+            "content": "Record income and spending over a consistent period. Separate fixed expenses, variable expenses, needs, wants, and irregular costs.",
+            "format": "markdown"
+          },
+          {
+            "id": "finance-and-budgeting-basics-m1-l2",
+            "title": "Emergency savings",
+            "content": "An emergency reserve can help cover unexpected essential expenses. A suitable target depends on income stability, obligations, and personal circumstances.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "finance-and-budgeting-basics-m2",
+        "title": "Module 2: Interest and Debt",
+        "lessons": [
+          {
+            "id": "finance-and-budgeting-basics-m2-l1",
+            "title": "Simple and compound interest",
+            "content": "Simple interest is calculated on the original principal. Compound interest earns interest on principal plus previously accumulated interest.",
+            "format": "markdown"
+          },
+          {
+            "id": "finance-and-budgeting-basics-m2-l2",
+            "title": "Borrowing responsibly",
+            "content": "Compare the total repayment amount, interest rate, fees, tenure, penalties, and affordability. Understand the terms before signing a loan agreement.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "finance-and-budgeting-basics-m3",
+        "title": "Module 3: Risk and Decisions",
+        "lessons": [
+          {
+            "id": "finance-and-budgeting-basics-m3-l1",
+            "title": "Diversification",
+            "content": "Diversification spreads exposure across assets or holdings, but it does not eliminate all investment risk or guarantee returns.",
+            "format": "markdown"
+          },
+          {
+            "id": "finance-and-budgeting-basics-m3-l2",
+            "title": "Avoiding scams",
+            "content": "Be cautious of guaranteed high returns, pressure to act immediately, unclear fees, and requests for OTPs or credentials. Verify providers independently.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "healthcare-and-biotechnology-introduction",
+    "domain": "Healthcare & Life Sciences",
+    "title": "Healthcare and Biotechnology Introduction",
+    "level": "Beginner",
+    "description": "An introductory overview of cells, biotechnology, evidence, and healthcare data privacy.",
+    "modules": [
+      {
+        "id": "healthcare-and-biotechnology-introduction-m1",
+        "title": "Module 1: Life Science Basics",
+        "lessons": [
+          {
+            "id": "healthcare-and-biotechnology-introduction-m1-l1",
+            "title": "Cells and DNA",
+            "content": "Cells are fundamental units of life. DNA stores genetic information, and genes are regions of DNA that contribute to biological functions through products such as RNA and proteins.",
+            "format": "markdown"
+          },
+          {
+            "id": "healthcare-and-biotechnology-introduction-m1-l2",
+            "title": "Biotechnology",
+            "content": "Biotechnology uses organisms, cells, or biological systems to develop products and processes, including diagnostics, medicines, agriculture, and research tools.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "healthcare-and-biotechnology-introduction-m2",
+        "title": "Module 2: Evidence and Quality",
+        "lessons": [
+          {
+            "id": "healthcare-and-biotechnology-introduction-m2-l1",
+            "title": "Scientific evidence",
+            "content": "A scientific claim should be evaluated using the quality of the evidence, study design, sample, uncertainty, and independent replication where appropriate.",
+            "format": "markdown"
+          },
+          {
+            "id": "healthcare-and-biotechnology-introduction-m2-l2",
+            "title": "Quality and traceability",
+            "content": "In regulated settings, records, validated procedures, documentation, and traceability help teams investigate errors and maintain consistent processes.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "healthcare-and-biotechnology-introduction-m3",
+        "title": "Module 3: Healthcare Data",
+        "lessons": [
+          {
+            "id": "healthcare-and-biotechnology-introduction-m3-l1",
+            "title": "Privacy and confidentiality",
+            "content": "Health data can be highly sensitive. Collect only what is necessary, restrict access, use secure storage, and follow applicable privacy and institutional rules.",
+            "format": "markdown"
+          },
+          {
+            "id": "healthcare-and-biotechnology-introduction-m3-l2",
+            "title": "Digital health systems",
+            "content": "Electronic records and analytics can support workflows, but data quality, access controls, interoperability, and human oversight remain important.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "healthcare-operations-and-analytics",
+    "domain": "Healthcare & Life Sciences",
+    "title": "Healthcare Operations and Analytics Basics",
+    "level": "Beginner",
+    "description": "Understand patient-flow concepts, operational metrics, process improvement, and responsible data use.",
+    "modules": [
+      {
+        "id": "healthcare-operations-and-analytics-m1",
+        "title": "Module 1: Healthcare Workflow",
+        "lessons": [
+          {
+            "id": "healthcare-operations-and-analytics-m1-l1",
+            "title": "Patient flow",
+            "content": "Patient flow describes movement through services such as registration, assessment, treatment, and discharge. Delays may occur when capacity and demand are mismatched.",
+            "format": "markdown"
+          },
+          {
+            "id": "healthcare-operations-and-analytics-m1-l2",
+            "title": "Process mapping",
+            "content": "A process map makes steps, handoffs, queues, and decision points visible. Teams can use it to locate bottlenecks before proposing changes.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "healthcare-operations-and-analytics-m2",
+        "title": "Module 2: Operational Measures",
+        "lessons": [
+          {
+            "id": "healthcare-operations-and-analytics-m2-l1",
+            "title": "Wait time and throughput",
+            "content": "Wait time measures delay before a service step. Throughput measures completed cases over a period. Both need clear definitions and time windows.",
+            "format": "markdown"
+          },
+          {
+            "id": "healthcare-operations-and-analytics-m2-l2",
+            "title": "Balancing measures",
+            "content": "Improving speed should not undermine safety, quality, equity, or staff workload. Evaluate multiple measures rather than optimising one number alone.",
+            "format": "markdown"
+          }
+        ]
+      },
+      {
+        "id": "healthcare-operations-and-analytics-m3",
+        "title": "Module 3: Improvement and Ethics",
+        "lessons": [
+          {
+            "id": "healthcare-operations-and-analytics-m3-l1",
+            "title": "Small improvement cycles",
+            "content": "Define the problem, establish a baseline, test a small change, measure outcomes, and decide whether to adapt, adopt, or abandon the change.",
+            "format": "markdown"
+          },
+          {
+            "id": "healthcare-operations-and-analytics-m3-l2",
+            "title": "Ethical data use",
+            "content": "Use appropriate permissions, minimise identifiable data, document definitions, and interpret results in context. Operational data should not be treated as a substitute for clinical judgement.",
+            "format": "markdown"
+          }
+        ]
+      }
+    ]
+  }
+]

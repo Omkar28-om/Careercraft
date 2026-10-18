@@ -1,0 +1,33 @@
+{
+  "name": "careercraft-server",
+  "version": "1.0.0",
+  "description": "CareerCraft backend API",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/dev.js",
+    "dev:client": "npm --prefix client run dev",
+    "dev:server": "npm --prefix server run dev",
+    "build": "npm --prefix client run build",
+    "test": "npm --prefix server test && node scripts/verify-routes.js",
+    "db:migrate": "npm --prefix server run db:migrate",
+    "start": "npm --prefix server start"
+  },
+  "keywords": [
+    "careercraft",
+    "student",
+    "career",
+    "api"
+  ],
+  "author": "CareerCraft",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "helmet": "^8.1.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}
