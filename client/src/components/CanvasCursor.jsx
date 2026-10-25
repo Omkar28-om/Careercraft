@@ -1,12 +1,20 @@
-import { useRef } from "react";
-import useCanvasCursor from "../hooks/use-canvasCursor";
-import "./CanvasCursor.css";
+import useCanvasCursor from "../hooks/useCanvasCursor";
 
-const CanvasCursor = () => {
-  const canvasRef = useRef(null);
-  useCanvasCursor(canvasRef);
+export default function CanvasCursor() {
+  useCanvasCursor();
 
-  return <canvas ref={canvasRef} aria-hidden="true" className="canvas-cursor" />;
-};
-
-export default CanvasCursor;
+  return (
+    <canvas
+      id="canvas"
+      aria-hidden="true"
+      style={{
+        position: "fixed",
+        inset: 0,
+        width: "100%",
+        height: "100%",
+        pointerEvents: "none",
+        zIndex: 9999,
+      }}
+    />
+  );
+}

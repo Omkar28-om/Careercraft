@@ -149,9 +149,13 @@ export default function Login() {
       ? "happy"
       : mascotState === "LOGIN_ERROR"
         ? "surprised"
-        : focusedField === "password" && !showPassword
-          ? "closed"
-          : "idle";
+        : focusedField === "password"
+          ? showPassword
+            ? "happy"
+            : "closed"
+          : mascotState === "PASSWORD_VISIBLE"
+            ? "happy"
+            : "idle";
 
   return (
     <main className="login-page">
@@ -163,10 +167,10 @@ export default function Login() {
 
       <div className="login-layout">
         <section className="login-mascot-column" aria-label="CareerCraft career companion">
-          <div className="login-eyebrow"><span /> Your next chapter starts here</div>
+          <div className="login-eyebrow"><span aria-hidden="true" /> YOUR NEXT CHAPTER STARTS HERE</div>
           <PageMascot
             mood={mascotMood}
-            caption={success ? "Welcome back!" : "Career Companion · Active"}
+            caption={success ? "Welcome back! 🎉" : "Career Companion · Active"}
             mobile="above"
             celebrate={mascotState === "LOGIN_SUCCESS"}
             className="login-mascot"

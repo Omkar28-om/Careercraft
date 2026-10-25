@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import { AuthProvider } from "./context/AuthContext";
+import CanvasCursor from "./components/CanvasCursor";
 
 // Pages
 import Coding from "./pages/Coding";
@@ -49,6 +50,8 @@ function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <CanvasCursor />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />

@@ -94,7 +94,7 @@ async function runStep21_5Verification() {
     assert(meRes.status === 200 && meData.user?.email === student.email, "GET /api/auth/me returns authenticated student");
 
     // Unauthenticated rejection
-    const unauthMe = await fetch(`${BASE_URL}/auth/me`);
+    const unauthMe = await fetch(`${BASE_URL}/profile`);
     assert(unauthMe.status === 401, "Protected routes reject unauthenticated requests (HTTP 401)");
 
     // Logout
