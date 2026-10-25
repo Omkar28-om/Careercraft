@@ -31,6 +31,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Domains from "./pages/Domains";
 import ResumeStudio from "./pages/ResumeStudio";
+import Settings from "./pages/Settings";
 
 // Admin Pages
 import AdminDashboard from "./pages/admin/AdminDashboard";
@@ -140,6 +141,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <Profile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute>
+                <Settings />
               </ProtectedRoute>
             }
           />

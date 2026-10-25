@@ -91,6 +91,12 @@ export const register = async (req, res) => {
 
         const newUser = result.rows[0];
 
+        // Ensure user has a profile record initialized
+        await pool.query(
+            "INSERT INTO profiles (id) VALUES ($1) ON CONFLICT (id) DO NOTHING",
+            [newUser.id]
+        );
+
         // 7. Generate JWT and store in HTTP-only cookie
         const token = jwt.sign(
             { userId: newUser.id, email: newUser.email, role: newUser.role },
@@ -100,11 +106,21 @@ export const register = async (req, res) => {
 
         res.cookie("token", token, getCookieOptions());
 
+        const safeUser = {
+            id: newUser.id,
+            name: newUser.name,
+            email: newUser.email,
+            role: newUser.role,
+            career_domain: null,
+            created_at: newUser.created_at,
+            updated_at: newUser.updated_at,
+        };
+
         return res.status(201).json({
             success: true,
             message: "User registered successfully",
             token,
-            user: newUser,
+            user: safeUser,
         });
     } catch (error) {
         console.error("Registration error:", error);
@@ -140,9 +156,10 @@ export const login = async (req, res) => {
 
         // 2. Find user by email
         const result = await pool.query(
-            `SELECT id, name, email, password_hash, role, created_at, updated_at
-             FROM users
-             WHERE LOWER(email) = LOWER($1)`,
+            `SELECT u.id, u.name, u.email, u.password_hash, u.role, u.created_at, u.updated_at, p.career_domain
+             FROM users u
+             LEFT JOIN profiles p ON u.id = p.id
+             WHERE LOWER(u.email) = LOWER($1)`,
             [trimmedEmail]
         );
 
@@ -180,6 +197,7 @@ export const login = async (req, res) => {
             name: user.name,
             email: user.email,
             role: user.role,
+            career_domain: user.career_domain || null,
             created_at: user.created_at,
             updated_at: user.updated_at,
         };

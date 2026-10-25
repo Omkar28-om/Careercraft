@@ -35,7 +35,8 @@ export default function Login() {
   // Keep the success message visible briefly before the post-login redirect runs.
   useEffect(() => {
     if (user && !submitting && mascotState !== "LOGIN_SUCCESS") {
-      navigate(getSelectedDomain() ? "/courses" : "/domains", { replace: true });
+      const hasDomain = Boolean(user.career_domain || getSelectedDomain());
+      navigate(hasDomain ? "/" : "/domains", { replace: true });
     }
   }, [user, submitting, mascotState, navigate]);
 
@@ -125,10 +126,11 @@ export default function Login() {
 
     try {
       setSubmitting(true);
-      await login(trimmedEmail, password);
+      const res = await login(trimmedEmail, password);
       setSuccess("Login successful");
       setMascotState("LOGIN_SUCCESS");
-      const destination = getSelectedDomain() ? "/courses" : "/domains";
+      const userDomain = res?.user?.career_domain || getSelectedDomain();
+      const destination = userDomain ? "/" : "/domains";
       // Briefly show the success message before navigation
       setTimeout(() => {
         navigate(destination, { replace: true });

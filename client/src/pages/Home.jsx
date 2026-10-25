@@ -31,6 +31,7 @@ import Badge from "../components/Badge";
 import SectionHeading from "../components/SectionHeading";
 import { ScrollReveal, StaggerContainer, StaggerItem, HoverCard } from "../components/motion/Motion";
 import { useAuth } from "../context/AuthContext";
+import PersonalizedHome from "../components/PersonalizedHome";
 
 const CODE_SNIPPET = `public int[] twoSum(int[] nums, int target) {
     Map<Integer, Integer> map = new HashMap<>();
@@ -122,6 +123,18 @@ export default function Home() {
       transition: { duration: 0.55, ease: [0.16, 1, 0.3, 1] },
     },
   };
+
+  if (user) {
+    return (
+      <div className="min-h-screen bg-[#080B14] text-[#F8FAFC] flex flex-col selection:bg-[#8B5CF6]/30 selection:text-[#F8FAFC] overflow-x-hidden w-full tech-grid-pattern">
+        <Navbar />
+        <main className="flex-1 overflow-x-hidden w-full">
+          <PersonalizedHome user={user} />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-[#080B14] text-[#F8FAFC] flex flex-col selection:bg-[#8B5CF6]/30 selection:text-[#F8FAFC] overflow-x-hidden w-full">

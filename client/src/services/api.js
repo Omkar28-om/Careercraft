@@ -121,6 +121,7 @@ export const api = {
 
 export const getProfile = () => api.get("/profile");
 export const updateProfile = (data) => api.put("/profile", data);
+export const updateCareerDomain = (domain) => api.put("/profile/domain", { domain });
 
 export const getSkills = () => api.get("/skills");
 export const createSkill = (data) => api.post("/skills", data);

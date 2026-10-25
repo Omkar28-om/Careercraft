@@ -1,5 +1,6 @@
-﻿import bcrypt from "bcryptjs";
+import bcrypt from "bcryptjs";
 import pool from "../db.js";
+import { ALLOWED_CAREER_DOMAINS, normalizeCareerDomain } from "./profile.controller.js";
 
 const ALLOWED_THEMES = new Set(["light", "dark", "system"]);
 
@@ -13,8 +14,10 @@ export const getSettings = async (req, res) => {
 
     // Fetch user safe fields
     const userResult = await pool.query(
-      `SELECT id, name, email, role, status, created_at, updated_at
-       FROM users WHERE id = $1`,
+      `SELECT u.id, u.name, u.email, u.role, u.status, u.created_at, u.updated_at, p.career_domain
+       FROM users u
+       LEFT JOIN profiles p ON u.id = p.id
+       WHERE u.id = $1`,
       [userId]
     );
 
@@ -71,6 +74,7 @@ export const updateSettings = async (req, res) => {
     const userId = req.user.id;
     const {
       theme,
+      career_domain,
       job_notifications,
       course_notifications,
       coding_notifications,
@@ -84,6 +88,21 @@ export const updateSettings = async (req, res) => {
         success: false,
         message: `Invalid theme. Allowed values: ${[...ALLOWED_THEMES].join(", ")}`,
       });
+    }
+
+    let normalizedDomain = undefined;
+    if (career_domain !== undefined) {
+      if (career_domain === null || career_domain === "") {
+        normalizedDomain = null;
+      } else {
+        normalizedDomain = normalizeCareerDomain(career_domain);
+        if (!normalizedDomain) {
+          return res.status(400).json({
+            success: false,
+            message: `Invalid career domain. Allowed values: ${ALLOWED_CAREER_DOMAINS.join(", ")}`,
+          });
+        }
+      }
     }
 
     // Validate boolean fields if provided
@@ -142,27 +161,52 @@ export const updateSettings = async (req, res) => {
       values.push(system_notifications);
     }
 
-    if (updates.length === 0) {
+    if (updates.length === 0 && normalizedDomain === undefined) {
       return res.status(400).json({ success: false, message: "No valid fields provided to update" });
     }
 
-    updates.push(`updated_at = NOW()`);
-    values.push(userId);
+    if (normalizedDomain !== undefined) {
+      await pool.query(
+        `INSERT INTO profiles (id, career_domain, updated_at)
+         VALUES ($1, $2, NOW())
+         ON CONFLICT (id) DO UPDATE SET
+             career_domain = EXCLUDED.career_domain,
+             updated_at = NOW()`,
+        [userId, normalizedDomain]
+      );
+    }
 
-    const prefResult = await pool.query(
-      `UPDATE user_preferences
-       SET ${updates.join(", ")}
-       WHERE user_id = $${paramIdx}
-       RETURNING theme, job_notifications, course_notifications,
-                 coding_notifications, freelance_notifications,
-                 system_notifications`,
-      values
-    );
+    let preferences = null;
+    if (updates.length > 0) {
+      updates.push(`updated_at = NOW()`);
+      values.push(userId);
+
+      const prefResult = await pool.query(
+        `UPDATE user_preferences
+         SET ${updates.join(", ")}
+         WHERE user_id = $${paramIdx}
+         RETURNING theme, job_notifications, course_notifications,
+                   coding_notifications, freelance_notifications,
+                   system_notifications`,
+        values
+      );
+      preferences = prefResult.rows[0];
+    } else {
+      const prefResult = await pool.query(
+        `SELECT theme, job_notifications, course_notifications,
+                coding_notifications, freelance_notifications,
+                system_notifications
+         FROM user_preferences WHERE user_id = $1`,
+        [userId]
+      );
+      preferences = prefResult.rows[0];
+    }
 
     return res.status(200).json({
       success: true,
       message: "Preferences updated",
-      preferences: prefResult.rows[0],
+      preferences,
+      career_domain: normalizedDomain !== undefined ? normalizedDomain : undefined,
     });
   } catch (error) {
     console.error("updateSettings error:", error.message);

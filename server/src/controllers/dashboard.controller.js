@@ -64,7 +64,7 @@ export const getDashboardData = async (req, res) => {
             freelanceSummaryRes,
         ] = await Promise.all([
             pool.query(
-                `SELECT bio, phone, location, college, degree, graduation_year, avatar_url, github_url, linkedin_url, portfolio_url
+                `SELECT bio, phone, location, college, degree, graduation_year, avatar_url, github_url, linkedin_url, portfolio_url, career_domain
                  FROM profiles
                  WHERE id = $1`,
                 [userId]

@@ -94,6 +94,7 @@ export default function Profile() {
     github_url: "",
     linkedin_url: "",
     portfolio_url: "",
+    career_domain: "",
   });
 
   // Skills data & editing states
@@ -189,6 +190,7 @@ export default function Profile() {
             github_url: res.profile.github_url || "",
             linkedin_url: res.profile.linkedin_url || "",
             portfolio_url: res.profile.portfolio_url || "",
+            career_domain: res.profile.career_domain || "",
           });
         }
       } catch (err) {
@@ -344,6 +346,7 @@ export default function Profile() {
     github: profileData?.github_url || null,
     linkedin: profileData?.linkedin_url || null,
     portfolio_url: profileData?.portfolio_url || null,
+    career_domain: profileData?.career_domain || user?.career_domain || null,
     stats: {
       solved: dashboardStats?.problemsSolved ?? (user?.problems_solved ?? 0),
       streak: dashboardStats?.currentStreak ?? 0,
@@ -381,6 +384,7 @@ export default function Profile() {
         github_url: formData.github_url.trim() || null,
         linkedin_url: formData.linkedin_url.trim() || null,
         portfolio_url: formData.portfolio_url.trim() || null,
+        career_domain: formData.career_domain || null,
       };
 
       const res = await updateProfile(payload);
@@ -692,6 +696,16 @@ export default function Profile() {
                   <Badge variant="cyan" size="xs">
                     {profile.role}
                   </Badge>
+                  {profile.career_domain && (
+                    <Link
+                      to="/domains"
+                      className="inline-flex items-center gap-1 rounded-md border border-violet-500/30 bg-violet-500/10 px-2 py-0.5 text-[10px] font-bold text-violet-300 hover:bg-violet-500/20 transition"
+                      title="Click to change your career domain"
+                    >
+                      <Sparkles size={11} />
+                      {profile.career_domain}
+                    </Link>
+                  )}
                   {profile.id && (
                     <span
                       className="text-[10px] font-mono text-slate-500 bg-white/[0.04] px-2 py-0.5 rounded-md border border-white/5"
@@ -1751,6 +1765,29 @@ export default function Profile() {
                     className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 transition focus:border-cyan-400 focus:bg-slate-900 focus:outline-none focus:ring-1 focus:ring-cyan-400"
                   />
                 </div>
+              </div>
+
+              {/* Career Domain Selection */}
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1.5">
+                  Career Domain / Focus Track
+                </label>
+                <select
+                  name="career_domain"
+                  value={formData.career_domain}
+                  onChange={handleInputChange}
+                  className="w-full rounded-xl border border-white/10 bg-slate-900/60 px-3.5 py-2.5 text-sm text-white placeholder-slate-500 transition focus:border-cyan-400 focus:bg-slate-900 focus:outline-none focus:ring-1 focus:ring-cyan-400"
+                >
+                  <option value="">Select a Career Domain</option>
+                  <option value="Full Stack Development">Full Stack Development</option>
+                  <option value="AI & Machine Learning">AI & Machine Learning</option>
+                  <option value="Data Science & Analytics">Data Science & Analytics</option>
+                  <option value="Java Development">Java Development</option>
+                  <option value="Python Development">Python Development</option>
+                  <option value="UI/UX & Product Design">UI/UX & Product Design</option>
+                  <option value="Cybersecurity">Cybersecurity</option>
+                  <option value="Digital Marketing">Digital Marketing</option>
+                </select>
               </div>
 
               {/* 2-Col: Graduation Year & Location */}

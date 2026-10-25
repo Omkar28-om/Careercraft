@@ -22,13 +22,15 @@ import {
   Code2,
   Send,
   Zap,
+  Compass,
 } from "lucide-react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { useAuth } from "../context/AuthContext";
 import { useTheme } from "../context/ThemeContext";
 import { LoadingScreen } from "../components/ProtectedRoute";
-import { getSettings, updateSettings, changePassword } from "../services/api";
+import { getSettings, updateSettings, changePassword, updateCareerDomain } from "../services/api";
+import { OFFICIAL_DOMAINS, getSelectedDomain } from "../utils/learningPath";
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -191,9 +193,14 @@ function ThemeSelector({ current, onChange, saving }) {
 // ─── Main Settings Page ───────────────────────────────────────────────────────
 
 export default function Settings() {
-  const { user, logout } = useAuth();
+  const { user, logout, saveCareerDomain } = useAuth();
   const { theme: currentTheme, setTheme, syncThemeFromServer } = useTheme();
   const navigate = useNavigate();
+
+  const [careerDomain, setCareerDomain] = useState(
+    user?.career_domain || getSelectedDomain() || ""
+  );
+  const [domainSaving, setDomainSaving] = useState(false);
 
   const [loading, setLoading] = useState(true);
   const [serverPrefs, setServerPrefs] = useState(null);
@@ -240,6 +247,9 @@ export default function Settings() {
         // Sync theme from server on page load
         if (res.preferences.theme) {
           syncThemeFromServer(res.preferences.theme);
+        }
+        if (res.user?.career_domain) {
+          setCareerDomain(res.user.career_domain);
         }
       }
     } catch (err) {
@@ -458,6 +468,82 @@ export default function Settings() {
               <ChevronRight size={15} />
             </a>
           )}
+        </SectionCard>
+
+        {/* ── CAREER TRACK & DOMAIN ── */}
+        <SectionCard
+          title="Career Track & Domain"
+          subtitle="Select or update your primary engineering specialization"
+          icon={Compass}
+          iconColor="text-violet-400"
+        >
+          <div className="space-y-4">
+            <p className="text-xs text-slate-300">
+              Your career domain personalizes your courses, practice questions, and job recommendations.
+            </p>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              {OFFICIAL_DOMAINS.map((domain) => {
+                const isSelected = careerDomain === domain.name;
+                return (
+                  <button
+                    key={domain.id}
+                    type="button"
+                    data-settings-domain={domain.name}
+                    disabled={domainSaving}
+                    onClick={async () => {
+                      if (domain.name === careerDomain || domainSaving) return;
+                      setDomainSaving(true);
+                      setCareerDomain(domain.name);
+                      try {
+                        await updateCareerDomain(domain.name);
+                        if (saveCareerDomain) {
+                          await saveCareerDomain(domain.name);
+                        }
+                        showToast(`Career domain set to ${domain.name}`);
+                      } catch (err) {
+                        showToast(err?.message || "Failed to update domain", "error");
+                      } finally {
+                        setDomainSaving(false);
+                      }
+                    }}
+                    className={`flex items-start justify-between rounded-xl border p-3.5 text-left transition cursor-pointer ${
+                      isSelected
+                        ? "border-violet-500/50 bg-violet-500/15 shadow-sm shadow-violet-500/10"
+                        : "border-white/10 bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]"
+                    }`}
+                  >
+                    <div>
+                      <p className={`text-xs font-bold ${isSelected ? "text-violet-300" : "text-white"}`}>
+                        {domain.name}
+                      </p>
+                      <p className="text-[11px] text-slate-400 mt-1 line-clamp-2">
+                        {domain.description}
+                      </p>
+                    </div>
+                    {isSelected && (
+                      <span className="shrink-0 flex items-center gap-1 rounded-full bg-violet-500/20 px-2 py-0.5 text-[10px] font-bold text-violet-300 ml-2">
+                        <Check size={10} /> Active
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {domainSaving && (
+              <p className="flex items-center gap-1.5 text-xs text-slate-400">
+                <RefreshCw size={12} className="animate-spin" /> Saving career track…
+              </p>
+            )}
+
+            <div className="pt-2 border-t border-white/[0.06] flex items-center justify-between text-xs">
+              <span className="text-slate-400">Want to explore all 8 tracks in detail?</span>
+              <a href="/domains" className="font-semibold text-cyan-400 hover:text-cyan-300 inline-flex items-center gap-1">
+                Open Domain Explorer <ChevronRight size={13} />
+              </a>
+            </div>
+          </div>
         </SectionCard>
 
         {/* ── APPEARANCE ── */}

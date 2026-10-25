@@ -1,6 +1,6 @@
-/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect, useCallback } from "react";
 import api from "../services/api";
+import { getSelectedDomain, setSelectedDomain } from "../utils/learningPath";
 
 const AuthContext = createContext(null);
 
@@ -15,6 +15,9 @@ export function AuthProvider({ children }) {
       const res = await api.get("/auth/me");
       if (res?.success && res?.user) {
         setUser(res.user);
+        if (res.user.career_domain) {
+          setSelectedDomain(res.user.career_domain);
+        }
         return res.user;
       } else {
         setUser(null);
@@ -40,6 +43,9 @@ export function AuthProvider({ children }) {
         if (isMounted) {
           if (res?.success && res?.user) {
             setUser(res.user);
+            if (res.user.career_domain) {
+              setSelectedDomain(res.user.career_domain);
+            }
           } else {
             setUser(null);
           }
@@ -69,6 +75,9 @@ export function AuthProvider({ children }) {
         try { localStorage.setItem("careercraft_token", res.token); } catch {}
       }
       setUser(res.user);
+      if (res.user.career_domain) {
+        setSelectedDomain(res.user.career_domain);
+      }
     }
     return res;
   };
@@ -84,6 +93,16 @@ export function AuthProvider({ children }) {
     return res;
   };
 
+  const saveCareerDomain = async (domain) => {
+    const res = await api.put("/profile/domain", { domain });
+    if (res?.success) {
+      const savedDomain = res.career_domain || domain;
+      setSelectedDomain(savedDomain);
+      setUser((prev) => (prev ? { ...prev, career_domain: savedDomain } : prev));
+    }
+    return res;
+  };
+
   const logout = async () => {
     try {
       await api.post("/auth/logout");
@@ -91,6 +110,7 @@ export function AuthProvider({ children }) {
       console.error("Logout request error:", err?.message || err);
     } finally {
       try { localStorage.removeItem("careercraft_token"); } catch {}
+      try { setSelectedDomain(""); } catch {}
       setUser(null);
     }
   };
@@ -103,6 +123,7 @@ export function AuthProvider({ children }) {
     logout,
     refreshUser,
     checkAuth,
+    saveCareerDomain,
     isAuthenticated: Boolean(user),
   };
 

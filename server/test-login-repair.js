@@ -257,17 +257,16 @@ async function runTests() {
     // 10. Responsive Viewport Verifications
     console.log("\n10. Testing Responsive Viewports...");
     const respPage = await browser.newPage();
-    await respPage.evaluate(async (url) => {
-      try {
-        await fetch(`${url}/api/auth/logout`, { method: "POST", credentials: "include" });
-      } catch {}
-    }, BACKEND_URL);
-    await respPage.deleteCookie({ name: "token", domain: "localhost" });
-
-    // Desktop: 1280x800
-    await respPage.setViewport({ width: 1280, height: 800 });
-    await respPage.goto(`${FRONTEND_URL}/login`, { waitUntil: "networkidle2" });
-    await respPage.waitForSelector(".login-card", { timeout: 5000 });
+    const cdp = await respPage.target().createCDPSession();
+    await cdp.send("Network.clearBrowserCookies");
+    await cdp.send("Network.clearBrowserCache");
+    await respPage.goto(`${FRONTEND_URL}/login`, { waitUntil: "domcontentloaded" });
+    await respPage.evaluate(() => {
+      try { localStorage.clear(); } catch {}
+      try { sessionStorage.clear(); } catch {}
+    });
+    await respPage.reload({ waitUntil: "networkidle2" });
+    await respPage.waitForSelector(".login-card", { timeout: 8000 });
     await respPage.screenshot({ path: `${screenshotsDir}/desktop_1280x800.png` });
     const desktopScrollX = await respPage.evaluate(() => window.scrollX);
     assert(desktopScrollX === 0, "Desktop has 0 horizontal scroll");

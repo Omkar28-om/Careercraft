@@ -18,7 +18,10 @@ export const authenticate = async (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
         const result = await pool.query(
-            "SELECT id, name, email, role, status, created_at, updated_at FROM users WHERE id = $1",
+            `SELECT u.id, u.name, u.email, u.role, u.status, u.created_at, u.updated_at, p.career_domain
+             FROM users u
+             LEFT JOIN profiles p ON u.id = p.id
+             WHERE u.id = $1`,
             [decoded.userId || decoded.id]
         );
 
@@ -73,7 +76,10 @@ export const optionalAuthenticate = async (req, res, next) => {
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const result = await pool.query(
-            "SELECT id, name, email, role, status FROM users WHERE id = $1",
+            `SELECT u.id, u.name, u.email, u.role, u.status, p.career_domain
+             FROM users u
+             LEFT JOIN profiles p ON u.id = p.id
+             WHERE u.id = $1`,
             [decoded.userId || decoded.id]
         );
 

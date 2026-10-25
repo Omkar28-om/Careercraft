@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import {
   Menu,
@@ -10,8 +10,6 @@ import {
   LayoutDashboard,
   User,
   LogOut,
-  LogIn,
-  UserPlus,
   Bell,
   ShieldAlert,
   Search,
@@ -20,27 +18,66 @@ import {
   Layers,
   FileText,
   GraduationCap,
+  Settings as SettingsIcon,
+  Compass,
+  Home,
+  CheckCircle2,
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import { getUnreadNotificationCount } from "../services/api";
+import { getSelectedDomain } from "../utils/learningPath";
 import GlobalSearchModal from "./GlobalSearchModal";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchModalOpen, setSearchModalOpen] = useState(false);
   const [opportunitiesOpen, setOpportunitiesOpen] = useState(false);
+  const [profileMenuOpen, setProfileMenuOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
+
+  const profileMenuRef = useRef(null);
+  const opportunitiesRef = useRef(null);
+
   const location = useLocation();
   const navigate = useNavigate();
   const { user, logout } = useAuth();
 
-  // Close mobile drawer on route change
+  const currentDomain = user?.career_domain || getSelectedDomain();
+
+  // Close menus on route change
   useEffect(() => {
     setMobileMenuOpen(false);
     setOpportunitiesOpen(false);
+    setProfileMenuOpen(false);
   }, [location.pathname]);
 
-  // Fetch unread notifications
+  // Click-outside listener for desktop dropdowns
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (profileMenuRef.current && !profileMenuRef.current.contains(event.target)) {
+        setProfileMenuOpen(false);
+      }
+      if (opportunitiesRef.current && !opportunitiesRef.current.contains(event.target)) {
+        setOpportunitiesOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event) => {
+      if (event.key === "Escape") {
+        setProfileMenuOpen(false);
+        setOpportunitiesOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleKeyDown);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, []);
+
+  // Fetch unread notifications for authenticated user
   useEffect(() => {
     if (!user) {
       setUnreadCount(0);
@@ -72,24 +109,30 @@ export default function Navbar() {
   }, [user, location.pathname]);
 
   const handleLogout = async () => {
-    await logout();
+    setProfileMenuOpen(false);
     setMobileMenuOpen(false);
-    navigate("/", { replace: true });
+    await logout();
+    navigate("/login", { replace: true });
   };
 
-  // Keep the main navigation centered on learning, practice, and building.
+  // Primary navigation: Home, Courses, Practice, Jobs & Internships, Projects, Dashboard
   const primaryNavItems = [
+    { name: "Home", path: "/", icon: Home },
     { name: "Courses", path: "/courses", icon: BookOpen },
     { name: "Practice", path: "/coding", icon: Code2 },
+    { name: "Jobs & Internships", path: "/jobs", icon: BriefcaseBusiness },
     { name: "Projects", path: "/projects", icon: Layers },
-    { name: "Resume", path: "/resume", icon: FileText },
+    ...(user ? [{ name: "Dashboard", path: "/dashboard", icon: LayoutDashboard }] : []),
   ];
+
   const opportunityItems = [
-    { name: "Jobs", path: "/jobs", icon: BriefcaseBusiness },
+    { name: "All Jobs", path: "/jobs", icon: BriefcaseBusiness },
     { name: "Internships", path: "/internships", icon: GraduationCap },
     { name: "Freelance", path: "/freelance", icon: Sparkles },
+    { name: "Resume Studio", path: "/resume", icon: FileText },
   ];
-  const isOpportunityActive = ["/jobs", "/internships", "/freelance"].some((path) =>
+
+  const isOpportunityActive = ["/internships", "/freelance", "/resume"].some((path) =>
     location.pathname.startsWith(path)
   );
 
@@ -100,7 +143,7 @@ export default function Navbar() {
       <header className="sticky top-0 z-40 border-b border-white/10 bg-[#080B14]/90 backdrop-blur-xl transition-all">
         <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
           {/* Brand Logo & Wordmark */}
-          <Link to="/" className="flex items-center gap-3 shrink-0 group">
+          <Link to="/" className="flex items-center gap-3 shrink-0 group" aria-label="CareerCraft Home">
             <img
               src="/careercraft-logo.png"
               alt="CareerCraft"
@@ -138,30 +181,33 @@ export default function Navbar() {
                 </NavLink>
               );
             })}
-            <div className="relative">
+
+            {/* More / Opportunities Dropdown */}
+            <div className="relative" ref={opportunitiesRef}>
               <button
                 type="button"
                 onClick={() => setOpportunitiesOpen((open) => !open)}
                 aria-expanded={opportunitiesOpen}
-                className={`inline-flex items-center gap-1 rounded-xl px-3 py-1.5 text-xs font-semibold transition-all duration-150 ${
+                className={`inline-flex items-center gap-1 rounded-xl px-2.5 py-1.5 text-xs font-semibold transition-all duration-150 ${
                   isOpportunityActive
                     ? "border border-[#8B5CF6]/30 bg-[#8B5CF6]/15 text-[#C4B5FD]"
                     : "text-slate-300 hover:bg-white/[0.05] hover:text-white"
                 }`}
               >
-                Opportunities <ChevronDown size={13} />
+                More <ChevronDown size={13} className={`transition-transform duration-150 ${opportunitiesOpen ? "rotate-180" : ""}`} />
               </button>
               {opportunitiesOpen && (
-                <div className="absolute right-0 top-full z-50 mt-2 w-48 rounded-2xl border border-white/10 bg-[#111827] p-2 shadow-2xl shadow-black/40">
+                <div className="absolute right-0 top-full z-50 mt-2 w-52 rounded-2xl border border-white/10 bg-[#111827] p-2 shadow-2xl shadow-black/50 animate-in fade-in zoom-in-95 duration-150">
                   {opportunityItems.map((item) => {
                     const Icon = item.icon;
                     return (
                       <Link
                         key={item.path}
                         to={item.path}
-                        className="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm text-slate-300 transition hover:bg-white/[0.06] hover:text-white"
+                        onClick={() => setOpportunitiesOpen(false)}
+                        className="flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium text-slate-300 transition hover:bg-white/[0.06] hover:text-white"
                       >
-                        <Icon size={16} className="text-cyan-300" />
+                        <Icon size={15} className="text-cyan-400" />
                         {item.name}
                       </Link>
                     );
@@ -189,7 +235,7 @@ export default function Navbar() {
 
             {user ? (
               <>
-                {/* Admin Console entry (Admins only) */}
+                {/* Admin Console shortcut (Admins only) */}
                 {isAdmin && (
                   <Link
                     to="/admin"
@@ -200,19 +246,6 @@ export default function Navbar() {
                     <span className="hidden lg:inline">Admin</span>
                   </Link>
                 )}
-
-                {/* Dashboard Shortcut */}
-                <Link
-                  to="/dashboard"
-                  title="Student Dashboard"
-                  className={`flex items-center justify-center h-9 w-9 rounded-xl border transition ${
-                    location.pathname === "/dashboard"
-                      ? "border-cyan-400/40 bg-cyan-400/10 text-cyan-300 font-bold"
-                      : "border-white/10 bg-white/[0.03] text-slate-300 hover:text-white hover:border-white/20 hover:bg-white/[0.06]"
-                  }`}
-                >
-                  <LayoutDashboard size={16} />
-                </Link>
 
                 {/* Notification Bell */}
                 <Link
@@ -228,24 +261,120 @@ export default function Navbar() {
                   )}
                 </Link>
 
-                {/* Profile Link */}
-                <Link
-                  to="/profile"
-                  title="My Profile"
-                  className={`flex items-center gap-2 rounded-xl border px-2.5 py-1.5 transition ${
-                    location.pathname === "/profile"
-                      ? "border-cyan-400/40 bg-cyan-400/10 text-cyan-300"
-                      : "border-white/10 bg-white/[0.03] text-slate-300 hover:text-white hover:border-white/20"
-                  }`}
-                >
-                  <div className="flex h-5 w-5 items-center justify-center rounded-lg bg-cyan-400/20 text-cyan-300 text-[10px] font-black">
-                    {user.name ? user.name.charAt(0).toUpperCase() : "U"}
-                  </div>
-                  <span className="text-xs font-semibold max-w-[90px] truncate hidden lg:inline">
-                    {user.name || "Student"}
-                  </span>
-                </Link>
+                {/* Profile / Avatar Dropdown Menu (Requirement 3) */}
+                <div className="relative" ref={profileMenuRef}>
+                  <button
+                    type="button"
+                    onClick={() => setProfileMenuOpen((open) => !open)}
+                    aria-expanded={profileMenuOpen}
+                    aria-label="User profile menu"
+                    className={`flex items-center gap-2 rounded-xl border px-2.5 py-1.5 transition ${
+                      profileMenuOpen || location.pathname === "/profile"
+                        ? "border-cyan-400/40 bg-cyan-400/10 text-cyan-300 shadow-sm shadow-cyan-500/10"
+                        : "border-white/10 bg-white/[0.03] text-slate-300 hover:text-white hover:border-white/20"
+                    }`}
+                  >
+                    <div className="flex h-6 w-6 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-blue-500 text-slate-950 text-xs font-black">
+                      {user.name ? user.name.charAt(0).toUpperCase() : "U"}
+                    </div>
+                    <span className="text-xs font-semibold max-w-[100px] truncate">
+                      {user.name || "Student"}
+                    </span>
+                    <ChevronDown
+                      size={13}
+                      className={`text-slate-400 transition-transform duration-150 ${
+                        profileMenuOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
 
+                  {/* Profile Dropdown Card */}
+                  {profileMenuOpen && (
+                    <div className="absolute right-0 top-full z-50 mt-2 w-64 rounded-2xl border border-white/10 bg-[#111827] p-2.5 shadow-2xl shadow-black/60 animate-in fade-in zoom-in-95 duration-150">
+                      {/* User Header */}
+                      <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 mb-2">
+                        <div className="flex items-center gap-2.5">
+                          <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 text-slate-950 font-black text-xs">
+                            {user.name ? user.name.charAt(0).toUpperCase() : "U"}
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-xs font-bold text-white truncate">{user.name}</p>
+                            <p className="text-[11px] text-slate-400 truncate">{user.email}</p>
+                          </div>
+                        </div>
+
+                        {/* Current Domain Badge */}
+                        <div className="mt-2.5 pt-2 border-t border-white/[0.06] flex items-center justify-between gap-1">
+                          <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">
+                            Domain
+                          </span>
+                          <span className="text-[11px] font-semibold text-cyan-300 truncate max-w-[130px]">
+                            {currentDomain || "Not Selected"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Dropdown Menu Links (My Profile, My Domain, Settings, Sign Out) */}
+                      <div className="space-y-0.5">
+                        <Link
+                          to="/profile"
+                          onClick={() => setProfileMenuOpen(false)}
+                          className="flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-semibold text-slate-300 hover:bg-white/[0.06] hover:text-white transition"
+                        >
+                          <User size={15} className="text-cyan-400" />
+                          <span>My Profile</span>
+                        </Link>
+
+                        <Link
+                          to="/domains"
+                          onClick={() => setProfileMenuOpen(false)}
+                          className="flex items-center justify-between rounded-xl px-3 py-2 text-xs font-semibold text-slate-300 hover:bg-white/[0.06] hover:text-white transition"
+                        >
+                          <div className="flex items-center gap-3">
+                            <Compass size={15} className="text-violet-400" />
+                            <span>My Domain</span>
+                          </div>
+                          <span className="text-[10px] text-slate-500 group-hover:text-slate-400">
+                            Change
+                          </span>
+                        </Link>
+
+                        <Link
+                          to="/settings"
+                          onClick={() => setProfileMenuOpen(false)}
+                          className="flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-semibold text-slate-300 hover:bg-white/[0.06] hover:text-white transition"
+                        >
+                          <SettingsIcon size={15} className="text-amber-400" />
+                          <span>Settings</span>
+                        </Link>
+
+                        {isAdmin && (
+                          <Link
+                            to="/admin"
+                            onClick={() => setProfileMenuOpen(false)}
+                            className="flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-semibold text-rose-300 hover:bg-rose-500/10 transition"
+                          >
+                            <ShieldAlert size={15} className="text-rose-400" />
+                            <span>Admin Console</span>
+                          </Link>
+                        )}
+                      </div>
+
+                      {/* Divider */}
+                      <div className="my-2 border-t border-white/[0.08]" />
+
+                      {/* Sign Out Button */}
+                      <button
+                        type="button"
+                        onClick={handleLogout}
+                        className="w-full flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-bold text-rose-400 hover:bg-rose-500/10 transition text-left cursor-pointer"
+                      >
+                        <LogOut size={15} />
+                        <span>Sign Out</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
               </>
             ) : (
               <div className="flex items-center gap-2">
@@ -259,7 +388,7 @@ export default function Navbar() {
                   to="/login"
                   className="flex items-center gap-1.5 rounded-xl bg-[#8B5CF6] px-3.5 py-1.5 text-xs font-bold text-white shadow-sm shadow-purple-500/25 hover:bg-[#7C3AED] transition"
                 >
-                  <span>Get Started</span>
+                  <span>Sign In</span>
                 </Link>
               </div>
             )}
@@ -317,19 +446,34 @@ export default function Navbar() {
         >
           {/* User Quick Info if logged in */}
           {user && (
-            <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.02] p-4">
-              <div className="flex items-center gap-3">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 text-slate-950 font-black text-sm">
-                  {user.name ? user.name.charAt(0).toUpperCase() : "U"}
+            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-4">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 to-blue-500 text-slate-950 font-black text-sm">
+                    {user.name ? user.name.charAt(0).toUpperCase() : "U"}
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-bold text-white">{user.name}</h3>
+                    <p className="text-xs text-slate-400">{user.email}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-sm font-bold text-white">{user.name}</h3>
-                  <p className="text-xs text-slate-400">{user.email}</p>
-                </div>
+                <span className="rounded-full bg-cyan-400/10 px-2.5 py-0.5 text-[10px] font-bold text-cyan-300 uppercase border border-cyan-400/20">
+                  {user.role}
+                </span>
               </div>
-              <span className="rounded-full bg-cyan-400/10 px-2.5 py-0.5 text-[10px] font-bold text-cyan-300 uppercase border border-cyan-400/20">
-                {user.role}
-              </span>
+
+              {/* Mobile Domain indicator */}
+              <div className="mt-3 pt-3 border-t border-white/[0.06] flex items-center justify-between">
+                <span className="text-xs text-slate-400">Career Domain:</span>
+                <Link
+                  to="/domains"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="text-xs font-bold text-cyan-300 hover:underline inline-flex items-center gap-1"
+                >
+                  {currentDomain || "Select domain"}
+                  <ChevronRight size={12} />
+                </Link>
+              </div>
             </div>
           )}
 
@@ -367,9 +511,10 @@ export default function Navbar() {
             })}
           </div>
 
+          {/* Opportunities Links */}
           <div className="space-y-1">
             <p className="px-2 mb-2 text-[11px] font-bold uppercase tracking-wider text-slate-400">
-              Opportunities
+              Opportunities & Tools
             </p>
             {opportunityItems.map((item) => {
               const Icon = item.icon;
@@ -390,24 +535,12 @@ export default function Navbar() {
             })}
           </div>
 
-          {/* Authenticated Links: Dashboard, Profile, Admin */}
+          {/* Authenticated Links: Profile, Domain, Settings, Admin, Logout */}
           {user ? (
             <div className="space-y-1 border-t border-white/10 pt-4">
               <p className="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 mb-2">
-                My Workspace
+                Account & Settings
               </p>
-
-              <Link
-                to="/dashboard"
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-xl p-3 text-sm font-semibold text-slate-300 hover:bg-white/[0.03] hover:text-white"
-              >
-                <div className="flex items-center gap-3">
-                  <LayoutDashboard size={18} className="text-slate-400" />
-                  <span>Student Dashboard</span>
-                </div>
-                <ChevronRight size={14} className="text-slate-600" />
-              </Link>
 
               <Link
                 to="/profile"
@@ -415,20 +548,32 @@ export default function Navbar() {
                 className="flex items-center justify-between rounded-xl p-3 text-sm font-semibold text-slate-300 hover:bg-white/[0.03] hover:text-white"
               >
                 <div className="flex items-center gap-3">
-                  <User size={18} className="text-slate-400" />
-                  <span>Portfolio & Profile</span>
+                  <User size={18} className="text-cyan-400" />
+                  <span>My Profile</span>
                 </div>
                 <ChevronRight size={14} className="text-slate-600" />
               </Link>
 
               <Link
-                to="/projects"
+                to="/domains"
                 onClick={() => setMobileMenuOpen(false)}
                 className="flex items-center justify-between rounded-xl p-3 text-sm font-semibold text-slate-300 hover:bg-white/[0.03] hover:text-white"
               >
                 <div className="flex items-center gap-3">
-                  <Layers size={18} className="text-slate-400" />
-                  <span>My Portfolio Projects</span>
+                  <Compass size={18} className="text-violet-400" />
+                  <span>My Domain</span>
+                </div>
+                <span className="text-xs text-slate-400">{currentDomain || "Change"}</span>
+              </Link>
+
+              <Link
+                to="/settings"
+                onClick={() => setMobileMenuOpen(false)}
+                className="flex items-center justify-between rounded-xl p-3 text-sm font-semibold text-slate-300 hover:bg-white/[0.03] hover:text-white"
+              >
+                <div className="flex items-center gap-3">
+                  <SettingsIcon size={18} className="text-amber-400" />
+                  <span>Settings</span>
                 </div>
                 <ChevronRight size={14} className="text-slate-600" />
               </Link>
@@ -454,7 +599,7 @@ export default function Navbar() {
               >
                 <div className="flex items-center gap-3">
                   <LogOut size={18} />
-                  <span>Log Out</span>
+                  <span>Sign Out</span>
                 </div>
               </button>
             </div>
@@ -472,7 +617,7 @@ export default function Navbar() {
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center rounded-xl bg-cyan-400 p-3 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/20"
               >
-                Get Started
+                Sign In
               </Link>
             </div>
           )}
