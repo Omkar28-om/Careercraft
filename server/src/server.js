@@ -20,6 +20,7 @@ import adminRoutes from "./routes/admin.routes.js";
 import settingsRoutes from "./routes/settings.routes.js";
 import careerRoutes from "./routes/career.routes.js";
 import { isAllowedOrigin, rejectUntrustedWriteOrigin, resolveAllowedOrigins, validateRuntimeConfig } from "./config/security.js";
+import { runMigrations } from "../scripts/migrate.js";
 
 
 dotenv.config();
@@ -230,14 +231,18 @@ app.get("/api/health", async (req, res) => {
 
 app.get("/api/db-test", async (req, res) => {
     try {
-        const result = await pool.query(
-            "SELECT COUNT(*)::int AS user_count FROM users"
+        const tablesResult = await pool.query(
+            "SELECT table_name FROM information_schema.tables WHERE table_schema = 'public' ORDER BY table_name"
         );
+        const userCountResult = await pool.query(
+            "SELECT COUNT(*)::int AS user_count FROM users"
+        ).catch(() => ({ rows: [{ user_count: 0 }] }));
 
         res.status(200).json({
             success: true,
             message: "Database query successful",
-            userCount: result.rows[0].user_count,
+            userCount: userCountResult.rows[0].user_count,
+            tables: tablesResult.rows.map(r => r.table_name),
         });
     } catch (error) {
         console.error("Database query failed:", error.message);
@@ -245,6 +250,7 @@ app.get("/api/db-test", async (req, res) => {
         res.status(500).json({
             success: false,
             message: "Database query failed",
+            error: error.message,
         });
     }
 });
@@ -286,6 +292,12 @@ const configProblems = validateRuntimeConfig(process.env);
 if (configProblems.length > 0) {
     console.error(`CareerCraft cannot start: ${configProblems.join("; ")}`);
     process.exit(1);
+}
+
+try {
+    await runMigrations(pool);
+} catch (migError) {
+    console.error("Database migration on startup failed:", migError.message || migError);
 }
 
 const server = app.listen(PORT, () => {

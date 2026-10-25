@@ -230,7 +230,7 @@ export const getMe = async (req, res) => {
     try {
         return res.status(200).json({
             success: true,
-            user: req.user,
+            user: req.user || null,
         });
     } catch (error) {
         console.error("GetMe error:", error);
