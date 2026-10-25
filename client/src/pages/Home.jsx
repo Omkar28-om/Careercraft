@@ -214,7 +214,7 @@ export default function Home() {
                     whileTap={shouldReduceMotion ? {} : { scale: 0.98 }}
                     className="w-full sm:w-auto"
                   >
-                    <Link to="/domains" className="block w-full">
+                    <Link to="/login" className="block w-full">
                       <Button
                         variant="primary"
                         size="lg"
@@ -222,7 +222,7 @@ export default function Home() {
                         iconPosition="right"
                         className="w-full sm:w-auto shadow-lg shadow-purple-500/20"
                       >
-                        Choose a Learning Domain
+                        Get Started
                       </Button>
                     </Link>
                   </motion.div>
@@ -914,9 +914,9 @@ export default function Home() {
                 </p>
 
                 <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-                  <Link to="/domains">
+                  <Link to="/login">
                     <Button variant="primary" size="lg" icon={ArrowRight} iconPosition="right">
-                      Choose Your Domain
+                      Get Started
                     </Button>
                   </Link>
                   <Link to="/courses">

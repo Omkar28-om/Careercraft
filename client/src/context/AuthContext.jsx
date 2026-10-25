@@ -65,6 +65,9 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     const res = await api.post("/auth/login", { email, password });
     if (res?.success && res?.user) {
+      if (res.token) {
+        try { localStorage.setItem("careercraft_token", res.token); } catch {}
+      }
       setUser(res.user);
     }
     return res;
@@ -73,6 +76,9 @@ export function AuthProvider({ children }) {
   const register = async (name, email, password) => {
     const res = await api.post("/auth/register", { name, email, password });
     if (res?.success && res?.user) {
+      if (res.token) {
+        try { localStorage.setItem("careercraft_token", res.token); } catch {}
+      }
       setUser(res.user);
     }
     return res;
@@ -84,6 +90,7 @@ export function AuthProvider({ children }) {
     } catch (err) {
       console.error("Logout request error:", err?.message || err);
     } finally {
+      try { localStorage.removeItem("careercraft_token"); } catch {}
       setUser(null);
     }
   };

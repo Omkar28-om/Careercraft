@@ -25,9 +25,11 @@ import Button from "../components/Button";
 import EmptyState from "../components/EmptyState";
 import { useAuth } from "../context/AuthContext";
 import { getJobs, applyToJob, saveJob, unsaveJob } from "../services/api";
+import { getSelectedDomain, isRelatedToDomain } from "../utils/learningPath";
 
 export default function Internships() {
   const { user } = useAuth();
+  const selectedDomain = getSelectedDomain();
 
   const [internships, setInternships] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -65,6 +67,11 @@ export default function Internships() {
       setLoading(false);
     }
   }, [searchQuery, selectedWorkMode, selectedCategory]);
+
+  const visibleInternships = useMemo(
+    () => internships.filter((internship) => isRelatedToDomain(internship, selectedDomain)),
+    [internships, selectedDomain],
+  );
 
   useEffect(() => {
     fetchInternships();
@@ -211,7 +218,7 @@ export default function Internships() {
               <GraduationCap size={20} className="text-cyan-400" />
               <span>Available Internships</span>
               <span className="text-xs font-normal text-slate-400">
-                ({internships.length} listings)
+                ({visibleInternships.length} listings{selectedDomain ? ` · ${selectedDomain}` : ""})
               </span>
             </h2>
           </div>
@@ -221,10 +228,10 @@ export default function Internships() {
               <Loader2 size={32} className="animate-spin text-cyan-400 mb-2" />
               <p className="text-sm">Loading CareerCraft internships from PostgreSQL...</p>
             </div>
-          ) : internships.length === 0 ? (
+          ) : visibleInternships.length === 0 ? (
             <EmptyState
-              title="No internships match your criteria"
-              description="Check back frequently or explore full-time software engineering roles."
+              title={selectedDomain ? `No ${selectedDomain} internships match these filters` : "No internships match your criteria"}
+              description="Try broadening your search or change your learning domain to see other student opportunities."
               actionLabel="Clear Filters"
               onAction={() => {
                 setSearchQuery("");
@@ -234,7 +241,7 @@ export default function Internships() {
             />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {internships.map((item) => {
+              {visibleInternships.map((item) => {
                 const isDemo =
                   item.applicationUrl?.includes("careercraft.local") ||
                   item.isDemo ||

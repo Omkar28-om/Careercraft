@@ -23,7 +23,7 @@ const DEVELOPMENT_ORIGINS = [
 
 export function resolveAllowedOrigins({ clientUrl, corsOrigins, nodeEnv }) {
   const configured = [clientUrl, ...(corsOrigins || "").split(",")]
-    .map((origin) => origin.trim())
+    .map((origin) => origin && origin.trim())
     .filter(Boolean);
 
   return new Set([
@@ -33,7 +33,11 @@ export function resolveAllowedOrigins({ clientUrl, corsOrigins, nodeEnv }) {
 }
 
 export function isAllowedOrigin(origin, allowedOrigins) {
-  return !origin || allowedOrigins.has(origin);
+  if (!origin) return true;
+  if (allowedOrigins.has(origin)) return true;
+  if (origin === "https://careercraft-peach.vercel.app") return true;
+  if (/^https:\/\/careercraft[a-z0-9-]*\.vercel\.app$/.test(origin)) return true;
+  return false;
 }
 
 export function isUnsafeMethod(method) {
@@ -44,7 +48,7 @@ export function isUnsafeMethod(method) {
 // state-changing browser requests as a second guard for cookie-authenticated APIs.
 export function rejectUntrustedWriteOrigin(req, allowedOrigins) {
   const origin = req.get("origin");
-  return isUnsafeMethod(req.method) && Boolean(origin) && !allowedOrigins.has(origin);
+  return isUnsafeMethod(req.method) && Boolean(origin) && !isAllowedOrigin(origin, allowedOrigins);
 }
 
 export function validateRuntimeConfig(env) {
@@ -56,9 +60,8 @@ export function validateRuntimeConfig(env) {
     problems.push("JWT_SECRET must be a unique secret of at least 32 characters");
   }
   if (env.NODE_ENV === "production") {
-    if (!env.CLIENT_URL?.trim()) {
-      problems.push("CLIENT_URL is required in production");
-    } else if (!env.CLIENT_URL.startsWith("https://")) {
+    const effectiveClientUrl = env.CLIENT_URL?.trim() || "https://careercraft-peach.vercel.app";
+    if (!effectiveClientUrl.startsWith("https://")) {
       problems.push("CLIENT_URL must use HTTPS in production");
     }
     const insecureOrigins = (env.CORS_ORIGINS || "")

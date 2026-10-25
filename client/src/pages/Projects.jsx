@@ -127,6 +127,36 @@ const PROJECT_STARTERS = [
     description: "Create an accessible library of plain-language educational articles with categories, reading time, and reviewed-by metadata. Use fictional sample content.",
     technologies: ["HTML", "CSS", "React", "Content Design"],
   },
+  {
+    domain: "IT & Software",
+    title: "Student Study Group Planner",
+    description: "Build a small app for classmates to create study sessions, share topics, and track attendance. Start with a simple form and a calendar list, then add reminders and mobile-friendly layouts.",
+    technologies: ["React", "JavaScript", "REST API", "Accessibility"],
+  },
+  {
+    domain: "Programming Languages",
+    title: "Campus Lost-and-Found CLI",
+    description: "Create a command-line tool that records found items, searches by keyword, and marks returned items. Save records to a file and handle empty or malformed input safely.",
+    technologies: ["Python", "File I/O", "Functions", "Testing"],
+  },
+  {
+    domain: "Cloud & Cybersecurity",
+    title: "Student Password Safety Checker",
+    description: "Make an offline learning tool that checks password length and common patterns without storing or transmitting the entered text. Explain each result and include privacy notes.",
+    technologies: ["JavaScript", "Security Basics", "Privacy", "Testing"],
+  },
+  {
+    domain: "Business, Management & Finance",
+    title: "Campus Club Event Budget",
+    description: "Plan a simple budget for a student club event. Track estimated and actual costs, split shared expenses, and show how many tickets are needed to break even.",
+    technologies: ["Spreadsheets", "Budgeting", "Data Visualization"],
+  },
+  {
+    domain: "Marketing & Content",
+    title: "Student Club Social Campaign",
+    description: "Plan a one-week campaign for a fictional campus event. Create audience notes, sample posts, a publishing calendar, and a lightweight results report using clearly labeled sample metrics.",
+    technologies: ["Content Strategy", "Social Media", "Analytics", "Writing"],
+  },
 ];
 
 export default function Projects() {
@@ -322,7 +352,20 @@ export default function Projects() {
     });
   }, [projects, searchQuery, selectedType]);
   const domainStarters = PROJECT_STARTERS.filter((starter) => starter.domain === selectedDomain);
-  const visibleStarters = domainStarters.length ? domainStarters : PROJECT_STARTERS;
+  const relatedProjectDomain = {
+    "Business & Finance": "Business, Management & Finance",
+    "Business & Management": "Business, Management & Finance",
+    "Web Development": "IT & Software",
+    Databases: "Data & Analytics",
+    "Data Structures & Algorithms": "Programming Languages",
+  }[selectedDomain] || selectedDomain;
+  const visibleStarters = domainStarters.length
+    ? domainStarters
+    : selectedDomain
+      ? (PROJECT_STARTERS.filter((starter) => starter.domain === relatedProjectDomain).length
+        ? PROJECT_STARTERS.filter((starter) => starter.domain === relatedProjectDomain)
+        : PROJECT_STARTERS)
+      : PROJECT_STARTERS;
 
   return (
     <div className="min-h-screen bg-[#080B14] text-[#F8FAFC] flex flex-col tech-grid-pattern">

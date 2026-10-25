@@ -154,6 +154,7 @@ export default function Courses() {
             <div className="flex flex-wrap gap-2">
               {practiceCourse && <Link to={`/courses/${practiceCourse.slug}/quiz`} className="rounded-lg border border-cyan-300/20 bg-cyan-300/[0.06] px-3 py-2 text-xs font-bold text-cyan-200 hover:bg-cyan-300/10">Practice questions</Link>}
               <Link to="/projects" className="rounded-lg border border-white/10 bg-white/[0.04] px-3 py-2 text-xs font-bold text-slate-200 hover:bg-white/[0.08]">Build a related project</Link>
+              <Link to="/domains" className="rounded-lg border border-violet-300/20 bg-violet-300/[0.06] px-3 py-2 text-xs font-bold text-violet-200 hover:bg-violet-300/10">Change domain</Link>
             </div>
           </section>
         )}

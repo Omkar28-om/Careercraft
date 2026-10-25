@@ -34,6 +34,7 @@ import {
   saveFreelanceProject,
   unsaveFreelanceProject,
 } from "../api";
+import { getSelectedDomain, isRelatedToDomain } from "../utils/learningPath";
 
 const CATEGORIES = [
   "All",
@@ -43,6 +44,11 @@ const CATEGORIES = [
   "AI & Automation",
   "Backend API",
   "Cloud & DevOps",
+  "Data & Analytics",
+  "Marketing & Content",
+  "Business, Management & Finance",
+  "Healthcare & Life Sciences",
+  "Design & Accessibility",
 ];
 
 const BUDGET_TYPES = [
@@ -61,6 +67,7 @@ const EXPERIENCE_LEVELS = [
 export default function Freelance() {
   const { user } = useAuth();
   const navigate = useNavigate();
+  const selectedDomain = getSelectedDomain();
 
   // Search & Filter States
   const [search, setSearch] = useState("");
@@ -101,20 +108,24 @@ export default function Freelance() {
         experienceLevel: selectedExperience !== "all" ? selectedExperience : undefined,
         status: "open",
         page,
-        limit: 9,
+        limit: selectedDomain ? 50 : 9,
       });
 
       if (res?.success) {
-        setProjects(res.projects || []);
-        setTotalPages(res.pagination?.totalPages || 1);
-        setTotalCount(res.pagination?.total || 0);
+        const fetchedProjects = res.projects || [];
+        const relevantProjects = selectedDomain
+          ? fetchedProjects.filter((project) => isRelatedToDomain(project, selectedDomain))
+          : fetchedProjects;
+        setProjects(relevantProjects);
+        setTotalPages(selectedDomain ? 1 : (res.pagination?.totalPages || 1));
+        setTotalCount(selectedDomain ? relevantProjects.length : (res.pagination?.total || 0));
       }
     } catch (err) {
       console.error("Failed to load freelance projects:", err);
     } finally {
       setLoading(false);
     }
-  }, [search, selectedCategory, selectedBudgetType, selectedExperience, page]);
+  }, [search, selectedCategory, selectedBudgetType, selectedExperience, page, selectedDomain]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -217,7 +228,7 @@ export default function Freelance() {
                   <span>Student & Developer Marketplace</span>
                 </span>
                 <span className="text-xs text-slate-400">
-                  {totalCount} Active Project{totalCount === 1 ? "" : "s"}
+                  {totalCount} {selectedDomain ? `${selectedDomain} ` : "Active "}Project{totalCount === 1 ? "" : "s"}
                 </span>
               </div>
               <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-white">

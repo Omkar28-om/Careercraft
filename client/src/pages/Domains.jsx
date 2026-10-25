@@ -195,11 +195,11 @@ export default function Domains() {
           <div className="pointer-events-none absolute -right-20 -top-24 h-72 w-72 rounded-full bg-violet-500/15 blur-3xl" />
           <div className="relative max-w-3xl">
             <span className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/[0.07] px-3 py-1 text-xs font-semibold text-cyan-200">
-              <Sparkles size={14} /> Learn by domain
+              <Sparkles size={14} /> Set your learning focus
             </span>
-            <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl">Choose what you want to <span className="text-violet-300">build.</span></h1>
+            <h1 className="mt-5 text-4xl font-black tracking-tight sm:text-5xl">What would you like to <span className="text-violet-300">learn?</span></h1>
             <p className="mt-4 max-w-2xl text-sm leading-7 text-slate-300 sm:text-base">
-              Follow a domain from fundamentals to practice. Pick a course, learn a concept, then put it to work in coding challenges and projects.
+              Choose a focus area and CareerCraft will tailor your courses, practice, project ideas, jobs, internships, and freelance opportunities. You can change your focus anytime.
             </p>
             <label className="mt-7 flex max-w-xl items-center gap-3 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-slate-400 focus-within:border-cyan-300/40">
               <Search size={17} className="shrink-0 text-cyan-300" />
@@ -233,7 +233,7 @@ export default function Domains() {
               return (
                 <Link
                   key={domain.name}
-                  to={`/courses?category=${encodeURIComponent(domain.name)}`}
+                  to="/courses"
                   onClick={() => setSelectedDomain(domain.name)}
                   className="group rounded-3xl border border-white/[0.08] bg-[#101827]/90 p-6 transition duration-200 hover:-translate-y-1 hover:border-white/20 hover:bg-[#131f31] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300"
                 >
@@ -244,7 +244,7 @@ export default function Domains() {
                   <p className="mt-6 text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500">{domain.eyebrow}</p>
                   <h3 className="mt-2 text-xl font-bold text-white group-hover:text-cyan-200">{domain.name}</h3>
                   <p className="mt-3 min-h-12 text-sm leading-6 text-slate-400">{domain.description}</p>
-                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-cyan-300">Explore courses <ArrowRight size={15} className="transition group-hover:translate-x-1" /></span>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-cyan-300">Use this domain <ArrowRight size={15} className="transition group-hover:translate-x-1" /></span>
                 </Link>
               );
             })}

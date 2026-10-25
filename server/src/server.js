@@ -27,7 +27,7 @@ dotenv.config();
 const app = express();
 
 const PORT = process.env.PORT || 5000;
-const CLIENT_URL = process.env.CLIENT_URL || (process.env.NODE_ENV === "production" ? "" : "http://localhost:5177");
+const CLIENT_URL = process.env.CLIENT_URL || (process.env.NODE_ENV === "production" ? "https://careercraft-peach.vercel.app" : "http://localhost:5177");
 const allowedOrigins = resolveAllowedOrigins({
     clientUrl: CLIENT_URL,
     corsOrigins: process.env.CORS_ORIGINS,

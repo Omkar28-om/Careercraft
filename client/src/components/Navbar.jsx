@@ -7,7 +7,6 @@ import {
   BookOpen,
   BriefcaseBusiness,
   Sparkles,
-  Compass,
   LayoutDashboard,
   User,
   LogOut,
@@ -80,7 +79,6 @@ export default function Navbar() {
 
   // Keep the main navigation centered on learning, practice, and building.
   const primaryNavItems = [
-    { name: "Domains", path: "/domains", icon: Compass },
     { name: "Courses", path: "/courses", icon: BookOpen },
     { name: "Practice", path: "/coding", icon: Code2 },
     { name: "Projects", path: "/projects", icon: Layers },
@@ -252,13 +250,13 @@ export default function Navbar() {
             ) : (
               <div className="flex items-center gap-2">
                 <Link
-                  to="/login"
+                  to="/register"
                   className="rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white hover:bg-white/[0.05] transition"
                 >
-                  Sign In
+                  Create account
                 </Link>
                 <Link
-                  to="/register"
+                  to="/login"
                   className="flex items-center gap-1.5 rounded-xl bg-[#8B5CF6] px-3.5 py-1.5 text-xs font-bold text-white shadow-sm shadow-purple-500/25 hover:bg-[#7C3AED] transition"
                 >
                   <span>Get Started</span>
@@ -463,18 +461,18 @@ export default function Navbar() {
           ) : (
             <div className="space-y-3 border-t border-white/10 pt-4">
               <Link
-                to="/login"
+                to="/register"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center rounded-xl border border-white/10 bg-white/[0.04] p-3 text-sm font-semibold text-white"
               >
-                Sign In
+                Create account
               </Link>
               <Link
-                to="/register"
+                to="/login"
                 onClick={() => setMobileMenuOpen(false)}
                 className="w-full flex items-center justify-center rounded-xl bg-cyan-400 p-3 text-sm font-bold text-slate-950 shadow-lg shadow-cyan-500/20"
               >
-                Start Learning Today
+                Get Started
               </Link>
             </div>
           )}

@@ -7,9 +7,39 @@ import {
   getLocalLesson,
 } from "../data/localCourses";
 
-const BASE_URL =
-  import.meta.env.VITE_API_URL ||
-  (import.meta.env.PROD ? "/api" : "http://localhost:5000/api");
+export function resolveApiUrl(endpoint, rawBase = import.meta.env.VITE_API_URL) {
+  if (endpoint.startsWith("http://") || endpoint.startsWith("https://")) {
+    return endpoint;
+  }
+
+  // 1. Determine base URL
+  let base = (rawBase && rawBase.trim()) || (import.meta.env.PROD ? "/api" : "http://localhost:5000/api");
+
+  // 2. Safeguard: Prevent accidental localhost in production
+  if (import.meta.env.PROD && (base.includes("localhost") || base.includes("127.0.0.1"))) {
+    console.warn("[CareerCraft] Production build detected a localhost VITE_API_URL. Falling back to relative '/api'.");
+    base = "/api";
+  }
+
+  // 3. Strip trailing slashes from base
+  base = base.replace(/\/+$/, "");
+
+  // 4. Ensure endpoint has leading slash
+  let cleanEndpoint = endpoint.startsWith("/") ? endpoint : `/${endpoint}`;
+
+  // 5. If base already ends with /api (e.g. https://domain.com/api or /api)
+  // and endpoint also starts with /api (e.g. /api/auth/login), avoid duplicate /api
+  if (base.endsWith("/api") && cleanEndpoint.startsWith("/api/")) {
+    cleanEndpoint = cleanEndpoint.replace(/^\/api/, "");
+  }
+
+  // 6. If base does not end with /api and endpoint does not start with /api, ensure /api is present
+  if (!base.endsWith("/api") && !cleanEndpoint.startsWith("/api/")) {
+    base = `${base}/api`;
+  }
+
+  return `${base}${cleanEndpoint}`;
+}
 
 export class ApiError extends Error {
   constructor(message, status = 500, data = null) {
@@ -21,14 +51,22 @@ export class ApiError extends Error {
 }
 
 async function request(endpoint, options = {}) {
-  const url = endpoint.startsWith("http")
-    ? endpoint
-    : `${BASE_URL}${endpoint.startsWith("/") ? "" : "/"}${endpoint}`;
+  const url = resolveApiUrl(endpoint);
 
   const defaultHeaders = {
     "Content-Type": "application/json",
     Accept: "application/json",
   };
+
+  // Attach token from localStorage if present for seamless cross-origin auth
+  try {
+    const savedToken = typeof window !== "undefined" ? localStorage.getItem("careercraft_token") : null;
+    if (savedToken && !options?.headers?.Authorization) {
+      defaultHeaders["Authorization"] = `Bearer ${savedToken}`;
+    }
+  } catch {
+    // Ignore storage errors in restricted contexts
+  }
 
   const config = {
     ...options,

@@ -22,6 +22,7 @@ import EmptyState from "../components/EmptyState";
 import Button from "../components/Button";
 import { getCodingProblems, getCodingSubmissions } from "../api";
 import { useAuth } from "../context/AuthContext";
+import { getSelectedDomain } from "../utils/learningPath";
 
 const topicsList = [
   "All",
@@ -38,6 +39,7 @@ const topicsList = [
 
 export default function Coding() {
   const { user } = useAuth();
+  const selectedDomain = getSelectedDomain();
   const [problems, setProblems] = useState([]);
   const [userSubmissions, setUserSubmissions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -151,9 +153,11 @@ export default function Coding() {
                 Problem <span className="text-[#8B5CF6]">Workspace</span>
               </h1>
               <p className="mt-2 text-sm sm:text-base text-[#94A3B8] max-w-xl">
-                Level up your data structures & algorithms skills with interview-grade
-                challenges, real-time code evaluation, and performance analytics.
+                {selectedDomain
+                  ? `Build problem-solving skills for ${selectedDomain} with guided practice, code evaluation, and progress tracking.`
+                  : "Build problem-solving skills with guided practice, code evaluation, and progress tracking."}
               </p>
+              {selectedDomain && <Link to="/domains" className="mt-3 inline-flex text-xs font-semibold text-cyan-300 hover:text-cyan-200">Change learning domain <ArrowRight size={14} className="ml-1" /></Link>}
             </div>
 
             {/* Quick Metrics */}

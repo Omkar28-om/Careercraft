@@ -27,9 +27,11 @@ import Button from "../components/Button";
 import EmptyState from "../components/EmptyState";
 import { getJobs, saveJob, unsaveJob } from "../api";
 import { useAuth } from "../context/AuthContext";
+import { getSelectedDomain, isRelatedToDomain } from "../utils/learningPath";
 
 export default function Jobs() {
   const { user } = useAuth();
+  const selectedDomain = getSelectedDomain();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const [jobs, setJobs] = useState([]);
@@ -75,6 +77,11 @@ export default function Jobs() {
       setLoading(false);
     }
   }, [activeTypeTab, selectedWorkMode, selectedExperience, searchQuery]);
+
+  const visibleJobs = useMemo(
+    () => jobs.filter((job) => isRelatedToDomain(job, selectedDomain)),
+    [jobs, selectedDomain],
+  );
 
   useEffect(() => {
     fetchJobs();
@@ -232,7 +239,7 @@ export default function Jobs() {
             <h2 className="text-lg font-bold text-white flex items-center gap-2">
               <span>{activeTypeTab === "All" ? "All Positions" : activeTypeTab}</span>
               <span className="text-xs font-normal text-slate-400">
-                ({jobs.length} open positions)
+                ({visibleJobs.length} open positions{selectedDomain ? ` · ${selectedDomain}` : ""})
               </span>
             </h2>
           </div>
@@ -242,10 +249,10 @@ export default function Jobs() {
               <Loader2 size={32} className="animate-spin text-cyan-400" />
               <p className="text-sm">Loading CareerCraft opportunities from PostgreSQL...</p>
             </div>
-          ) : jobs.length === 0 ? (
+          ) : visibleJobs.length === 0 ? (
             <EmptyState
-              title="No opportunities match your current filters"
-              description="Try broadening your search query or reset work mode and experience filters."
+              title={selectedDomain ? `No ${selectedDomain} opportunities match these filters` : "No opportunities match your current filters"}
+              description="Try broadening your search or change your learning domain to see more relevant roles."
               actionLabel="Clear Filters"
               onAction={() => {
                 setSearchQuery("");
@@ -258,7 +265,7 @@ export default function Jobs() {
             />
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {jobs.map((job) => {
+              {visibleJobs.map((job) => {
                 const workModeCapitalized =
                   job.workMode?.charAt(0).toUpperCase() + job.workMode?.slice(1) || "Remote";
                 const isInternship = job.jobType === "internship";

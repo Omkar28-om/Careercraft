@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import PageMascot from "../components/PageMascot";
+import { getSelectedDomain } from "../utils/learningPath";
 import "./Login.css";
 
 export default function Login() {
@@ -33,7 +34,7 @@ export default function Login() {
   // Keep the celebration visible before the existing post-login redirect runs.
   useEffect(() => {
     if (user && !submitting && mascotState !== "LOGIN_SUCCESS") {
-      navigate("/domains", { replace: true });
+      navigate(getSelectedDomain() ? "/courses" : "/domains", { replace: true });
     }
   }, [user, submitting, mascotState, navigate]);
 
@@ -126,9 +127,10 @@ export default function Login() {
       await login(trimmedEmail, password);
       setSuccess("Login successful");
       setMascotState("LOGIN_SUCCESS");
+      const destination = getSelectedDomain() ? "/courses" : "/domains";
       // Allow brief celebratory victory bounce & confetti before navigation
       setTimeout(() => {
-        navigate("/domains", { replace: true });
+        navigate(destination, { replace: true });
       }, 1200);
     } catch (err) {
       setMascotState("LOGIN_ERROR");

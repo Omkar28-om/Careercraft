@@ -1,4 +1,5 @@
 import api, {
+    resolveApiUrl,
     ApiError,
     getProfile,
     updateProfile,
@@ -67,6 +68,7 @@ import api, {
 
 export {
     api,
+    resolveApiUrl,
     ApiError,
     getProfile,
     updateProfile,
