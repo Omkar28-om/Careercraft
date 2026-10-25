@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 import PageMascot from "../components/PageMascot";
+import CanvasCursor from "../components/CanvasCursor";
 import { getSelectedDomain } from "../utils/learningPath";
 import "./Login.css";
 
@@ -31,7 +32,7 @@ export default function Login() {
   const { login, user } = useAuth();
   const navigate = useNavigate();
 
-  // Keep the celebration visible before the existing post-login redirect runs.
+  // Keep the success message visible briefly before the post-login redirect runs.
   useEffect(() => {
     if (user && !submitting && mascotState !== "LOGIN_SUCCESS") {
       navigate(getSelectedDomain() ? "/courses" : "/domains", { replace: true });
@@ -128,7 +129,7 @@ export default function Login() {
       setSuccess("Login successful");
       setMascotState("LOGIN_SUCCESS");
       const destination = getSelectedDomain() ? "/courses" : "/domains";
-      // Allow brief celebratory victory bounce & confetti before navigation
+      // Briefly show the success message before navigation
       setTimeout(() => {
         navigate(destination, { replace: true });
       }, 1200);
@@ -154,6 +155,7 @@ export default function Login() {
 
   return (
     <main className="login-page">
+      <CanvasCursor />
       <a className="login-brand" href="/" aria-label="CareerCraft home">
         <span className="login-brand__mark" aria-hidden="true">C</span>
         <span className="login-brand__name">Career<span>Craft</span></span>
@@ -265,3 +267,4 @@ export default function Login() {
     </main>
   );
 }
+

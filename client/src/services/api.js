@@ -13,12 +13,12 @@ export function resolveApiUrl(endpoint, rawBase = import.meta.env.VITE_API_URL) 
   }
 
   // 1. Determine base URL
-  let base = (rawBase && rawBase.trim()) || (import.meta.env.PROD ? "/api" : "http://localhost:5000/api");
+  let base = (rawBase && rawBase.trim()) || (import.meta.env.PROD ? "https://careercraft-api-25hd.onrender.com/api" : "http://localhost:5000/api");
 
   // 2. Safeguard: Prevent accidental localhost in production
   if (import.meta.env.PROD && (base.includes("localhost") || base.includes("127.0.0.1"))) {
-    console.warn("[CareerCraft] Production build detected a localhost VITE_API_URL. Falling back to relative '/api'.");
-    base = "/api";
+    console.warn("[CareerCraft] Production build detected a localhost VITE_API_URL. Falling back to the deployed CareerCraft API.");
+    base = "https://careercraft-api-25hd.onrender.com/api";
   }
 
   // 3. Strip trailing slashes from base

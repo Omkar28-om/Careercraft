@@ -4,7 +4,8 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "node src/server.js",
+        "start": "node scripts/migrate.js && node src/server.js",
+        "build": "node scripts/migrate.js",
         "dev": "nodemon src/server.js",
         "admin:promote": "node scripts/promote-admin.js",
         "admin:create": "node scripts/create-admin.js",
